@@ -1,0 +1,36 @@
+.addformdiv{
+    color: white;
+    margin :4rem 0 0 20%;
+    padding: 4rem 2rem 4rem 17rem;
+    border: solid rgb(58, 4, 58) 1px ;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 8px 4px rgba(103, 16, 124, 0.541);
+    width: 50rem;
+    
+}
+
+
+.addbtn{
+    background-color: rgb(23, 4, 41);
+    font-size: 1rem;
+    width: 20rem;
+    height: max-content;
+    padding: 0.5rem;
+    text-align: center;
+    color:white;
+    outline: none;
+    border: solid rgb(140, 0, 255) 1px;
+    border-radius: 0.5rem;
+   
+
+}
+
+.addbtn:hover
+{
+    cursor: pointer;
+    background-color: rgb(106, 75, 134);
+
+}
+.addbtn:active{
+    font-size: larger;
+}

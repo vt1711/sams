@@ -1,0 +1,14 @@
+.inputlabel{
+      
+}
+.inputfield{
+  margin-left: 2rem;
+  height: 1.5rem;
+  width: 15rem;
+  background-color: rgb(57, 24, 88);
+  outline: none;
+  border: none;
+  color: white;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+}

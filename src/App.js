@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/navbar/Navbar';
+import { Routes, Route } from "react-router-dom";
+import ViewRecords from './components/viewrecords/ViewRecords'
+import UpdateRecords from './components/updaterecords/UpdateRecords'
+import AddForm from './components/updaterecords/addform/AddForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="viewrecords" element={<ViewRecords />} />
+        <Route path="updaterecords" element={<UpdateRecords />}>
+          <Route path="addnew" element={<AddForm />} />
+        </Route>
+
+
+
+      </Routes>
+    </>
   );
 }
 

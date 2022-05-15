@@ -1,0 +1,27 @@
+h1{
+    color: white;
+    text-align: center;
+    margin: 2rem 0 2rem 2rem;
+}
+
+.updateoptionsdiv{
+   border : solid purple 5px;
+   display: flex;
+}
+.updateoptions{
+    padding: 1rem;
+    flex-grow: 1;
+    text-align: center;
+    background-color: rgb(59, 7, 59);
+}
+.updateoptions:hover{
+    background-color: rgb(66, 12, 66);
+}
+
+.updateexisting , .addnew{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+    
+    
+}  
