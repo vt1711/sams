@@ -5,17 +5,17 @@ h1{
 }
 
 .updateoptionsdiv{
-   border : solid purple 5px;
+   border : solid rgb(23, 4, 41) 5px;
    display: flex;
 }
 .updateoptions{
     padding: 1rem;
     flex-grow: 1;
     text-align: center;
-    background-color: rgb(59, 7, 59);
+    background-color: rgb(45, 8, 78);;
 }
 .updateoptions:hover{
-    background-color: rgb(66, 12, 66);
+    background-color: rgb(73, 36, 107);;
 }
 
 .updateexisting , .addnew{

@@ -1,6 +1,4 @@
-.inputlabel{
-      
-}
+
 .inputfield{
   margin-left: 2rem;
   height: 1.5rem;
@@ -11,4 +9,12 @@
   color: white;
   padding-left: 1rem;
   border-radius: 0.5rem;
+}
+
+.addressip{
+  margin-left: 1rem;
+}
+
+.statusip{
+  margin : 0 0 1rem 1.8rem;
 }
