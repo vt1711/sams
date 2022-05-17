@@ -6,15 +6,9 @@ const UpdateRecords = () => {
     <>
         <h1>Update Records</h1>
         <div className='updateoptionsdiv'>
-          <div className=' updateoptions'>
-             <NavLink activeClassName='active' className='updateexisting' to='updateexisting'>Update Existing Records</NavLink>
-          </div>
-          <div className=' updateoptions'> 
-            <NavLink activeClassName='active' className='addnew' to='addnew'>Add New Records</NavLink>
-             
-          </div>
-          
-        </div>
+          <NavLink activeClassName='active' className=' updateoptions updateexisting' to='updateexisting'>Update Existing Records</NavLink>
+          <NavLink activeClassName='active' className='updateoptions addnew' to='addnew'>Add New Records</NavLink>
+       </div>
         <Outlet/>
     </>
   )

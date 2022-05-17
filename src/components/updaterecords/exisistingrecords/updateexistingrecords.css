@@ -1,0 +1,24 @@
+.updateexisttble {
+  width: 78%;
+  margin: 2rem 0 0 9rem;
+  border: solid rgb(187, 138, 233) 1px;
+  border-radius: 1rem;
+  color: aliceblue;
+  text-align: center;
+  padding: 1rem;
+}
+.updateexistth {
+  padding: 1rem;
+  font-size: larger;
+  color: rgb(177, 245, 222);
+}
+.updateexisttd {
+  padding: 1rem;
+}
+@media only screen and (max-width: 600px) {
+  .updateexisttble {
+    width: 24rem;
+    margin: 2rem 0 0 1rem;
+    color: aliceblue;
+  }
+}
