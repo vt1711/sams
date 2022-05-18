@@ -1,6 +1,6 @@
 .updateexisttble {
   width: 78%;
-  margin: 2rem 0 0 9rem;
+  margin: 2rem 0 2rem 9rem;
   border: solid rgb(187, 138, 233) 1px;
   border-radius: 1rem;
   color: aliceblue;
@@ -18,7 +18,7 @@
 @media only screen and (max-width: 600px) {
   .updateexisttble {
     width: 24rem;
-    margin: 2rem 0 0 1rem;
+    margin: 2rem 0 2rem 1rem;
     color: aliceblue;
   }
 }

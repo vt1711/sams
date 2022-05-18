@@ -1,8 +1,10 @@
 import React from 'react'
+import PieChart from '../recordstable/piechart/PieChart'
+import RecordsTable from '../recordstable/RecordsTable'
 
 const ViewRecords = () => {
   return (
-    <div>ViewRecords</div>
+    <PieChart/>
   )
 }
 

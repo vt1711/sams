@@ -1,14 +1,32 @@
 import React from 'react'
 import EditButton from './EditButton'
 import './updateexistingrecords.css'
+const data = require('../../../json/records.json');
+// console.log(data);
+
 
 const UpdateExistingRecords = () => {
+    
+    const { records } = data;
 
-    const records = [
-        { name: "abhi ", address: "margao ", status: " paid" },
-        { name: "kabhi ", address: "panjim ", status: "unpaid " },
-        { name: "tabhi ", address: "ponda ", status: "paid " }
-    ]
+    // const Records = [
+    //     { name: "abhi ", address: "margao ", status: " paid" },
+    //     { name: "kabhi ", address: "panjim ", status: "paid " },
+    //     { name: "tabhi ", address: "ponda ", status: "unpaid " },
+    //     { name: "abhi ", address: "margao ", status: " paid" },
+    //     { name: "kabhi ", address: "panjim ", status: "paid " },
+    //     { name: "tabhi ", address: "ponda ", status: "unpaid " },
+    //     { name: "abhi ", address: "margao ", status: " paid" },
+    //     { name: "kabhi ", address: "panjim ", status: "paid " },
+    //     { name: "tabhi ", address: "ponda ", status: "unpaid " },
+    //     { name: "abhi ", address: "margao ", status: " paid" },
+    //     { name: "kabhi ", address: "panjim ", status: "paid " },
+    //     { name: "tabhi ", address: "ponda ", status: "unpaid " },
+    //     { name: "abhi ", address: "margao ", status: " paid" },
+    //     { name: "kabhi ", address: "panjim ", status: "paid " },
+    //     { name: "tabhi ", address: "ponda ", status: "unpaid " }
+
+    // ]
 
 
     return (
@@ -24,9 +42,9 @@ const UpdateExistingRecords = () => {
                         return (
                             <>
                                 <tr className='updateexistrow'>
-                                    <td className='updateexisttd'>{ele.name}</td>
-                                    <td className='updateexisttd'>{ele.address}</td>
-                                    <td className='updateexisttd'>{ele.status}</td>
+                                    <td key={ele.name} className='updateexisttd'>{ele.name}</td>
+                                    <td key={ele.name} className='updateexisttd'>{ele.address}</td>
+                                    <td key={ele.name} className='updateexisttd'>{ele.status}</td>
                                     <EditButton buttonclass='updateexisteditbtn' spanclass='material-symbols-outlined' spantext='edit' />
                                     <EditButton buttonclass='updateexistdelbtn' spanclass='material-symbols-outlined' spantext='delete' />
                                 </tr>
