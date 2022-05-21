@@ -5,19 +5,27 @@ import './navbar.css';
 const Navbar = () => {
   return (
     <>
-       <div className="navbar">
-          <div>
-          <div className='navlogo'>
-             SAMS
-           </div>
-           <div className="navoptions">
-           <NavLink className="navlinks" activeClassName='active' to='/viewrecords'>View Records</NavLink>
-           <NavLink  className="navlinks" activeClassName='active' to='/updaterecords'>Update Records</NavLink>
+      <div className="navbar">
+        <div>
+          <div >
+          <NavLink
+              to='/'
+              className={({ isActive }) => "navlogo" + ( isActive ? " activenavlink " : "")}
+              >SAMS</NavLink>
+          </div>
+          <div className="navoptions">
+            <NavLink
+              to='/viewrecords'
+              className={({ isActive }) => "navlinks" + ( isActive ? " activenavlink " : "")}
+              >View Records</NavLink>
+            <NavLink 
+              className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
+              to='/updaterecords'>Update Records</NavLink>
           </div>
 
-          </div>
-          
-       </div> 
+        </div>
+
+      </div>
     </>
   )
 }

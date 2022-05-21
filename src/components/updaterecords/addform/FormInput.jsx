@@ -5,7 +5,7 @@ const FormInput = (props) => {
     return (
     <>
         
-        <input className={props.class} type="text" id={props.inputforid} / >
+        <input className={props.class} type={props.inputtype} id={props.inputforid} / >
         
 
     </>

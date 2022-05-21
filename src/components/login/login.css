@@ -1,0 +1,67 @@
+.h4login {
+  text-align: center;
+  color: aliceblue;
+}
+
+.loginlabel {
+  margin: 0 2rem 0 0;
+}
+
+.logininputuserid {
+  margin-left: 1.5rem;
+}
+
+.loginformdiv {
+  color: white;
+  margin: 4rem 0 0 20%;
+  padding: 4rem 2rem 4rem 17rem;
+  border: solid rgb(23, 4, 41) 1px;
+  box-shadow: 0px 4px 8px 4px rgb(23, 4, 41);
+  border-radius: 1rem;
+  width: 50rem;
+}
+
+.logininput {
+  background-color: rgb(214, 169, 240);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.loginbutton {
+  background-color: rgb(23, 4, 41);
+  font-size: 1rem;
+  width: 10rem;
+  height: max-content;
+  padding: 0.5rem;
+  text-align: center;
+  color: white;
+  outline: none;
+  border: solid rgb(72, 9, 124) 1px;
+  border-radius: 0.5rem;
+  margin: 2rem 0 0 4rem;
+}
+
+.loginbutton:hover {
+  cursor: pointer;
+  background-color: rgb(106, 75, 134);
+}
+.loginbutton:active {
+  font-size: larger;
+}
+
+@media only screen and (max-width: 600px) {
+  .loginformdiv {
+    margin: 2rem 0 0 1rem;
+    padding: 4rem 0rem 4rem 1.4rem;
+    width: 24rem;
+  }
+
+  .loginlabel {
+    margin: 0 2rem 0 1.5rem;
+  }
+
+  .loginbutton {
+    margin: 2rem 0 0 6.4rem;
+  }
+}

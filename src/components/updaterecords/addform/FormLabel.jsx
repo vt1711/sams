@@ -3,7 +3,7 @@ import React from 'react'
 const FormLabel = (props) => {
   return (
     <>
-        <label className='inputlabel' htmlFor={props.inputfor}>{props.inputfor} : </label>
+        <label className={`inputlabel ${props.class}`} htmlFor={props.inputfor}>{props.inputfor} : </label>
     </>
   )
 }

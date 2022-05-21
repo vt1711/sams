@@ -6,8 +6,12 @@ const UpdateRecords = () => {
     <>
         <h1>Update Records</h1>
         <div className='updateoptionsdiv'>
-          <NavLink activeClassName='active' className=' updateoptions updateexisting' to='updateexisting'>Update Existing Records</NavLink>
-          <NavLink activeClassName='active' className='updateoptions addnew' to='addnew'>Add New Records</NavLink>
+          <NavLink 
+           className={ ({isActive})=> "updateoptions updateexisting" + (isActive?" activenavlink ":"")  }
+           to='updateexisting'>Update Existing Records</NavLink>
+          <NavLink 
+           className= { ({isActive})=> "updateoptions addnew" + ( isActive ? " activenavlink " : "" ) }
+           to='addnew'>Add New Records</NavLink>
        </div>
         <Outlet/>
     </>

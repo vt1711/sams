@@ -4,7 +4,11 @@ import RecordsTable from '../recordstable/RecordsTable'
 
 const ViewRecords = () => {
   return (
-    <PieChart/>
+    <>
+      <h1>Records</h1>
+      <RecordsTable />
+    </>
+
   )
 }
 

@@ -8,11 +8,11 @@ const AddForm = () => {
     <div className='addformdiv'>
     <form action="">
     <FormLabel inputfor="Name"/>
-    <FormInput class="inputfield" inputforid="Name"/> <br /><br />
+    <FormInput class="inputfield" inputforid="Name" inputtype="text"/> <br /><br />
     <FormLabel inputfor="Address"/>
-    <FormInput class="inputfield addressip" inputforid="Address"/> <br /><br />
+    <FormInput class="inputfield addressip" inputforid="Address" inputtype="text"/> <br /><br />
     <FormLabel  inputfor="Status"/>
-    <FormInput  class="inputfield statusip" inputforid="Status"/> <br /><br />
+    <FormInput  class="inputfield statusip" inputforid="Status" inputtype="text"/> <br /><br />
     <input className='addbtn' type="submit" value="Add" />
     </form>
     </div>
