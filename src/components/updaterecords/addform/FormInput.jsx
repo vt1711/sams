@@ -1,11 +1,14 @@
 import React from 'react'
 import './forminput.css'
 const FormInput = (props) => {
-  
+
+    
     return (
     <>
-        
-        <input className={props.class} type={props.inputtype} id={props.inputforid} / >
+    
+        <input 
+         onChange={(e)=>props.onchange(e.target.value)}
+         className={props.class} type={props.inputtype} id={props.inputforid} / >
         
 
     </>
