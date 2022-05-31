@@ -1,0 +1,56 @@
+.viewrecordsoptiondiv{
+    margin: 2rem 0 0 45%;
+    height: fit-content;
+    width: fit-content;
+}
+
+.recordsheading{
+    color: white;
+    text-align:center;
+    font-size: 2rem;
+    font-weight: bold;
+    
+}
+
+.viewrecordstypelogos{
+    color: white;
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0.5px 0.5px 3px 2px black;
+    text-decoration: none;
+    
+}
+
+.viewrecordstypelogosactive{
+     color: aqua;
+}
+
+
+.viewrecordstypelogos:hover{
+    color: aqua;
+}
+
+.piechartlogo{
+   
+    margin-left: 1rem;
+}
+.listlogo{
+    margin-left: 30rem;
+    
+}
+
+@media only screen and (max-width: 600px) {
+
+    .viewrecordsoptiondiv{
+        margin: 2rem 0 0 1rem;
+    
+    }
+    .listlogo{
+        margin-left: 9rem;
+        
+    }
+}

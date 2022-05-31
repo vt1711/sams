@@ -1,5 +1,120 @@
+
+.fulldoughnutdiv{
+   margin: 2rem 0 0 18rem;
+   display: flex;
+   width: max-content;
+   height: max-content;
+   box-shadow: 0.5px 0.5px 3px 2px rgb(26, 1, 36);
+   border-radius: 1rem;
+   padding: 0rem 4rem 2rem 0rem;
+   display: flex;
+}
+@keyframes doughnuttitleentry {
+    0% {margin-top: 0;}
+    10% {margin-top: 1rem;}
+    20% {margin-top: 2rem;}
+    30% {margin-top: 3rem;}
+    40% {margin-top: 4rem;}
+    50% {margin-top: 5rem;}
+    60% {margin-top: 6rem;}
+    70% {margin-top: 7rem;}
+    80% {margin-top: 8rem;}
+    90% {margin-top: 9rem;}
+    95% {margin-top: 10rem;}
+    100% {margin-top: 11rem;
+      color: rgb(166, 247, 247);}
+    
+}
+
+.doughnuttitle{
+    color: whitesmoke;
+    margin: 0rem 0 0 2rem;
+    animation: doughnuttitleentry 1s linear 1s 1 normal forwards;
+}
 .chartdiv{
     
-   
-    margin-top: 20rem;
+    width: 24rem; 
+
+}
+.legendsdiv{
+    
+    height: max-content;
+    width: max-content;
+    margin:10rem 0 0 3rem;
+    display: flex;
+    flex-direction: column;
+}
+.paidlegendsdiv , .unpaidlegendsdiv{
+    display: flex;
+}
+.unpaidlegendbox , .paidlegendbox{
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(255, 10, 10, 0.493);
+    float: left;
+    border-radius: 0.5rem;
+}
+
+.paidlegendbox{
+    
+    background-color: rgb(41, 190, 3);
+    
+}
+
+.paidlegend, .unpaidlegend{
+    margin: 0.3rem 0 0 1rem;
+    color: whitesmoke;
+}
+
+@media only screen and (max-width:600px){
+
+
+.fulldoughnutdiv{
+  
+   display:block;
+   padding: 0;
+   margin: 2rem 0 0 1rem;
+}
+
+@keyframes doughnuttitleentry {
+     0% {padding-left: 0;}
+    10% {padding-left: 0.5rem;}
+    20% {padding-left: 1rem;}
+    30% {padding-left: 1.5rem;}
+    40% {padding-left: 2rem;}
+    50% {padding-left: 2.5rem;}
+    60% {padding-left: 3rem;}
+    70% {padding-left: 3.5rem;}
+    80% {padding-left: 4rem;}
+    90% {padding-left: 4.5rem;}
+    95% {padding-left: 5rem;}
+    100% {padding-left: 6.5rem;
+          color: rgb(166, 247, 247);
+          }
+    
+}
+
+.doughnuttitle{
+    margin: 0;
+    padding: 1.5rem 0 0 0;
+    animation: doughnuttitleentry 1s linear 1s 1 normal forwards;
+    
+}
+.chartdiv{
+    
+    width: 24rem; 
+
+}
+.legendsdiv{
+    
+    margin: 2rem 0 0 6rem ;
+    padding: 0 0 2rem 0;
+    flex-direction: row;
+}
+
+.unpaidlegendsdiv{
+    margin-left: 3rem;
+}
+
+
 }
