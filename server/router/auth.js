@@ -23,35 +23,35 @@ router.post('/login', async (req, res) => {
         if (user) {
 
             // const passwordmatch = await bcrypt.compare(password, user.password)
-            
+
 
             if (password===user.password) {
                 console.log("Successfully logged in");
-                
+
                 token= await user.generateAuthToken();
                 console.log(token);
-                
+
                 res.cookie("jwtoken",token,{
                     expires: new Date(Date.now() + 30000000000),
                     httpOnly:true
                 }
                 );
-                
+
 
                 // res.send(token);
                 res.status(200).json({ message: "Successfully logged in" });
-                
+
             }
             else {
                 res.status(400).json({ error: "Wrong userid or password" });
                 console.log("Wrong userid or password");
-                
+
             }
         }
         else {
 
             res.status(400).json({ error: "signin error" });
-            
+
         }
 
     } catch (err) {
@@ -63,7 +63,7 @@ router.post('/updaterecords/addnew', async (req, res) => {
 
     const { name, address, status } = req.body;
 
-    //code for tetsing
+    //code for testing
     // console.log(req.body);
     // console.log(req.body.city);
     // console.log(address);
@@ -99,53 +99,60 @@ router.get(`/showrecords`, async (req, res) => {
     try {
         // console.log(req.query);
         const records = await samspaymentdetailsschemasdetails.find({})
-        console.log(records);
-        if(!records) {
-            res.status(422);
+        console.log("........server fetched records........",records);
+        if (records.length===0) {
+            res.status(422).send(records);
             console.log("..........no records found");
         }
-        else{
+        else {
             //console.log(records);
-             res.send(records);
+            res.send(records);
         }
-        
-        
-        
-        
+
+
+
+
     } catch (error) {
         console.log(error);
     }
-    
-    
+
+
 });
 
 
 
 router.delete(`/updaterecords/updateexisting/delete`, async (req, res) => {
     try {
-        console.log(".................",req.body.selectedrecord);
-        const idtodelete= req.body.selectedrecord;
-        
-        const deletestatus = await samspaymentdetailsschemasdetails.findByIdAndRemove(idtodelete);
-        
-        console.log("........deletestatus.........",deletestatus);
+        console.log(".......server....selectedrecord........", req.body.deleterecord_id);
+        const idtodelete = req.body.deleterecord_id;
 
-        if(!deletestatus) res.status(422);
-        else res.status(200);
-        
-        
-        
-        
-        
-        
+        const deletestatus = await samspaymentdetailsschemasdetails.findByIdAndRemove(idtodelete);
+
+        console.log("....server....deletestatus.........", deletestatus);
+
+        if (deletestatus === null) {
+            res.status(422);
+        }
+        else {
+            res.status(200).send(deletestatus);
+        }
+
     } catch (error) {
         console.log(error);
     }
-    
-    
+
+
 });
 
-
+router.patch('/updaterecords/updateexisting/update', async (req, res) => {
+    // console.log(req.body);
+    const { _id, name, address, status } = req.body;
+    const result = await samspaymentdetailsschemasdetails.findByIdAndUpdate(_id, {
+        name, address, status
+    })
+    // console.log(data);
+    res.status(200).send(result);
+});
 
 
 
