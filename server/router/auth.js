@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 require("../db/conn");
 
 const samsloginschemasdetails = require("../model/schema");
+const samspaymentdetailsschemasdetails =require("../model/paymentdetailsschema");
+const { json } = require('express');
 
 
 router.post('/login', async (req, res) => {
@@ -56,6 +58,96 @@ router.post('/login', async (req, res) => {
         console.log(err);
     }
 });
+
+router.post('/updaterecords/addnew', async (req, res) => {
+
+    const { name, address, status } = req.body;
+
+    //code for tetsing
+    // console.log(req.body);
+    // console.log(req.body.city);
+    // console.log(address);
+    // res.json({message:req.body});
+
+    // uncomment during proper validation
+    // if(!center_name || !address || !city)
+    // {
+    //     return res.status(422).json({error:"error"});
+    // }
+
+    try {
+        const userexists = await samspaymentdetailsschemasdetails.findOne({ name: name });
+
+        if (userexists) { return res.status(422).json({ error: "user exists" }); }
+        else {
+            const user = new samspaymentdetailsschemasdetails({ name,address,status});
+
+            await user.save();
+
+            res.status(201).json({ message: "user created" });
+        }
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+
+router.get(`/showrecords`, async (req, res) => {
+    try {
+        // console.log(req.query);
+        const records = await samspaymentdetailsschemasdetails.find({})
+        console.log(records);
+        if(!records) {
+            res.status(422);
+            console.log("..........no records found");
+        }
+        else{
+            //console.log(records);
+             res.send(records);
+        }
+        
+        
+        
+        
+    } catch (error) {
+        console.log(error);
+    }
+    
+    
+});
+
+
+
+router.delete(`/updaterecords/updateexisting/delete`, async (req, res) => {
+    try {
+        console.log(".................",req.body.selectedrecord);
+        const idtodelete= req.body.selectedrecord;
+        
+        const deletestatus = await samspaymentdetailsschemasdetails.findByIdAndRemove(idtodelete);
+        
+        console.log("........deletestatus.........",deletestatus);
+
+        if(!deletestatus) res.status(422);
+        else res.status(200);
+        
+        
+        
+        
+        
+        
+    } catch (error) {
+        console.log(error);
+    }
+    
+    
+});
+
+
+
+
 
 
 module.exports = router;

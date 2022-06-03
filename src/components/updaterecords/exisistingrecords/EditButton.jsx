@@ -5,10 +5,10 @@ const EditButton = (props) => {
     const {buttonclass ,spanclass,spantext} = props;
     return (
         <>
-            <button className={buttonclass}>
-                <span class={spanclass}>
+            <button className={`${buttonclass} ${spanclass}`} onClick={(e)=>props.onclick(e)} >
+                
                     {spantext}
-                </span>
+               
             </button>
         </>
     )

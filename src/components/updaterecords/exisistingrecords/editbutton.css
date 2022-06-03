@@ -25,8 +25,9 @@
 }
 
 .updateexisteditbtn:active {
-  border: solid rgb(243, 243, 33) 1px;  
+  /* border: solid rgb(243, 243, 33) 1px;   */
+  
 }
 .updateexistdelbtn:active {
-  border: solid rgb(247, 103, 84) 1px;
+  /* border: solid rgb(247, 103, 84) 1px; */
 }

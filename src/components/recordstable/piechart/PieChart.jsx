@@ -10,9 +10,10 @@ import {
   Filler, Legend, Title, Tooltip, SubTitle
 } from 'chart.js';
 
-const Data = require("../../../json/records.json");
-const { records } = Data;
-// console.log(records);
+//for data retreival from json file
+// const Data = require("../../../json/records.json");
+// const { records } = Data;
+// // console.log(records);
 
 Chart.register(
   ArcElement, LineElement, BarElement,
@@ -31,6 +32,57 @@ const PieChart = () => {
 
   let mychart, upcount, pcount;
 
+  ///////////////////////////////////////db data fetch/////////////////////////////
+  let Data;
+  const [records, setRecords] = useState([]);
+
+  const getfunction = async () => {
+    let res;
+    res = await fetch(`/showrecords`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+
+      }
+    });
+
+    Data = await res.json();
+    // console.log(Data[0].full_name);
+    // alert(Data[0].full_name);
+    // alert(JSON.stringify(Data));
+    console.log(Data)
+    if (res.status === 422 || !Data) {
+
+      console.log("Error ! Could not fetch records");
+      window.alert("Error ! Could not fetch records");
+    }
+    else { 
+      console.log("Records fetched");
+      // window.alert("Records fetched");
+
+      // console.log("dataaaaaaaa pre");
+      // console.log(Data);
+      // console.log("cetntereeeeeeeee pre");
+      // console.log(center);
+
+
+      setRecords(Data);
+      console.log("........Data.....",Data);
+      // console.log("cetntereeeeeeeee post");
+      
+    }
+  }
+
+  useEffect(() => {
+    getfunction();
+
+
+  }, []);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
   useEffect(() => {
 
     upcount = records.filter((obj) => obj.status === "unpaid").length;
@@ -38,7 +90,7 @@ const PieChart = () => {
     setPaidcount(pcount);
     setUnpaidcount(upcount);
 
-  }, []);
+  }, [records]);
 
   const [unpaidcount, setUnpaidcount] = useState(upcount);
   const [paidcount, setPaidcount] = useState(pcount);
