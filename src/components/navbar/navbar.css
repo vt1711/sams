@@ -14,19 +14,30 @@
 .navoptions{
    float: right; 
    padding: 0.5rem 0 0.5rem 0.5rem;
-    
+   display: inline-block;
+   height: 2.5rem;
 
 }
 .navlinks{
-    height: 2.5rem;
-    padding:  0.5rem 0.3rem 0.9rem 0.3rem;
+    display: inline-block;
+    height: 2rem;
+    width: 9rem;
+    text-align: center;
     text-decoration: none;
     margin-right: 1rem;
     color: white;
+    border-bottom: none;
+}
+
+@keyframes borderbottomeffect {
+    
+    from {border-bottom: solid 0px ;border-bottom-color:transparent;font-weight:normal;}
+    to {border-bottom: solid 2px ;border-bottom-color: rgb(128, 49, 197);font-weight:bolder;}
 }
 
 .activenavlink{
-    font-weight: bolder;
-    font-size: larger;
     
+   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: borderbottomeffect 0.2s linear 0s 1 normal forwards; 
+   
 }

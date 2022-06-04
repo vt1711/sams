@@ -6,24 +6,24 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar">
-        <div>
+        
           <div >
-          <NavLink
+            <NavLink
               to='/'
               className={({ isActive }) => "navlogo" + ( isActive ? " activenavlink " : "")}
-              >SAMS</NavLink>
+            >SAMS</NavLink>
           </div>
           <div className="navoptions">
             <NavLink
               to='/viewrecords'
               className={({ isActive }) => "navlinks" + ( isActive ? " activenavlink " : "")}
-              >View Records</NavLink>
-            <NavLink 
+            >View Records</NavLink>
+            <NavLink
               className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
               to='/updaterecords'>Update Records</NavLink>
           </div>
 
-        </div>
+        
 
       </div>
     </>
