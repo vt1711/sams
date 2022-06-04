@@ -5,9 +5,9 @@ import FormInput from './FormInput'
 import FormLabel from './FormLabel'
 const AddForm = () => {
 
-   const [name,setName] =useState('okk');
+   const [name,setName] =useState('');
    const [address,setAddress] =useState('');
-   const [status,setStatus] =useState('');
+   const [paymentstatus,setPaymentstatus] =useState('');
    const [user,setUser]=useState('');
    const navigate =useNavigate();
 
@@ -17,17 +17,18 @@ const AddForm = () => {
       {
         name:name,
         address:address,
-        status:status
+        paymentstatus:paymentstatus
       }
     )
     
-   }, [name,address,status])
+   }, [name,address,paymentstatus])
    
    
    const addUserFunction = async (e) => {
-
+    
     e.preventDefault();
-    const { name,address,status} = user;
+    
+    const { name,address,paymentstatus} = user;
     
     const res = await fetch("/updaterecords/addnew", {
       method: "POST",
@@ -36,7 +37,7 @@ const AddForm = () => {
 
       },
       body: JSON.stringify({
-        name,address,status
+        name,address,paymentstatus
       })
     })
     const data = await res.json();
@@ -57,6 +58,7 @@ const AddForm = () => {
 
   return (
     <>
+    
     <div className='addformdiv'>
     <form method='POST'>
     <FormLabel inputfor="Name"/>
@@ -70,10 +72,19 @@ const AddForm = () => {
     class="inputfield addressip" inputforid="Address" inputtype="text"
     /> <br /><br />
     <FormLabel  inputfor="Status"/>
-    <FormInput  
-    onchange={(value)=>{setStatus(value)}}
-    class="inputfield statusip" inputforid="Status" inputtype="text"
-      /> <br /><br />
+    
+    
+    <input type="radio" name='paymentstatus' id='Paid' value="Paid" className='paidradiobtn'
+      onClick={(e)=>setPaymentstatus(e.target.value)}
+    />
+    <label htmlFor="Paid" className='paidlabel'>Paid </label>
+
+    <input type="radio" name='paymentstatus' id='Unpaid' value="Unpaid" className='unpaidradiobtn'
+      onClick={(e)=>setPaymentstatus(e.target.value)}
+    />
+    <label htmlFor="Unpaid" className='unpaidlabel'>Unpaid </label>
+
+     
     <input className='addbtn' type="submit" value="Add" 
      onClick={(e)=>addUserFunction(e)} />
     </form>

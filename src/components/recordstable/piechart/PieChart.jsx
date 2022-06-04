@@ -85,8 +85,8 @@ const PieChart = () => {
 
   useEffect(() => {
 
-    upcount = records.filter((obj) => obj.status === "unpaid").length;
-    pcount = records.filter((obj) => obj.status === "paid").length;
+    upcount = records.filter((obj) => obj.status === "Unpaid").length;
+    pcount = records.filter((obj) => obj.status === "Paid").length;
     setPaidcount(pcount);
     setUnpaidcount(upcount);
 

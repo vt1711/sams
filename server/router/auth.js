@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/updaterecords/addnew', async (req, res) => {
 
-    const { name, address, status } = req.body;
+    const { name, address, paymentstatus } = req.body;
 
     //code for testing
     // console.log(req.body);
@@ -80,7 +80,7 @@ router.post('/updaterecords/addnew', async (req, res) => {
 
         if (userexists) { return res.status(422).json({ error: "user exists" }); }
         else {
-            const user = new samspaymentdetailsschemasdetails({ name,address,status});
+            const user = new samspaymentdetailsschemasdetails({ name,address,status:paymentstatus});
 
             await user.save();
 
