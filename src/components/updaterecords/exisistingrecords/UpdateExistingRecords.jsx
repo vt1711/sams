@@ -12,6 +12,24 @@ const UpdateExistingRecords = () => {
   // const { records } = data;
 
   const [rowcss, setRowcss] = useState('');
+ 
+  const highlightRow =(selectedrow,action)=>{
+    if(action==="edit"){
+      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
+      updateRecords(selectedrow);
+      console.log(selectedrow)
+
+    }
+    else if(action==="delete") {
+      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
+      deleteRecord(selectedrow);
+    }
+      
+  }
+  const unHighlightRow = (selectedrow)=>{
+      // console.log("....row....",rowcss);
+      selectedrow.style.backgroundColor="transparent";
+  }
 
   ///////////////////////////////////////get data from db start/////////////////////////////
   let Data;
@@ -58,15 +76,17 @@ const UpdateExistingRecords = () => {
 
   /////////////////////////////////////delete data from db start////////////////////////////////
 
-  const deleteRecord = async (deleterecord_id) => {
+  const deleteRecord = async (selectedrow) => {
     // console.log("..............delete.......", deleterecord_id);
+    const {id} = selectedrow;
+    console.log("....delete fun....",id);
     const res = await fetch("/updaterecords/updateexisting/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        deleterecord_id
+        id
       })
     })
     const result = await res.json();
@@ -81,6 +101,7 @@ const UpdateExistingRecords = () => {
 
       // console.log("record deletion successfull",result);
       alert("record deletion successfull");
+      unHighlightRow(selectedrow);
       getRecords();
     }
 
@@ -90,7 +111,7 @@ const UpdateExistingRecords = () => {
 
   ///////////////////////////////update data in db start/////////////////////////////////////////
 
-  const updateRecords = async (editrecord_id) => {
+  const updateRecords = async (selectedrow) => {
 
     // console.log("..............editid.......", editrecord_id);
 
@@ -101,7 +122,7 @@ const UpdateExistingRecords = () => {
 
       },
       body: JSON.stringify({
-        _id: editrecord_id,
+        _id: selectedrow.id,
         name: 'Shyam',
         address: 'oookkk',
         status: 'unpaid',
@@ -117,6 +138,7 @@ const UpdateExistingRecords = () => {
     else {
       // console.log("updation successfull", result);
       alert("updation successfull");
+      unHighlightRow(selectedrow);
       getRecords();
     }
   };
@@ -140,10 +162,10 @@ const UpdateExistingRecords = () => {
                   <td key={`${ele._id}.${ele.address}`} className='updateexisttd'>{ele.address}</td>
                   <td key={`${ele._id}.${ele.status}`} className='updateexisttd'>{ele.status}</td>
                   <EditButton
-                    onclick={(e) => { setRowcss(e.target.parentNode.style.backgroundColor = "rgb(77, 31, 110)"); updateRecords(e.target.parentNode.id); }}
+                    onclick={(e) => { highlightRow(e.target.parentNode,"edit"); }}
                     buttonclass='updateexisteditbtn' spanclass='material-symbols-outlined' spantext='edit' />
                   <EditButton
-                    onclick={(e) => { setRowcss(e.target.parentNode.style.backgroundColor = "rgb(77, 31, 110)"); deleteRecord(e.target.parentNode.id); }}
+                    onclick={(e) => { highlightRow(e.target.parentNode,"delete"); }}
                     buttonclass='updateexistdelbtn' spanclass='material-symbols-outlined' spantext='delete' />
                 </tr>
 

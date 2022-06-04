@@ -123,8 +123,8 @@ router.get(`/showrecords`, async (req, res) => {
 
 router.delete(`/updaterecords/updateexisting/delete`, async (req, res) => {
     try {
-        console.log(".......server....selectedrecord........", req.body.deleterecord_id);
-        const idtodelete = req.body.deleterecord_id;
+        console.log(".......server....selectedrecord........", req.body.id);
+        const idtodelete = req.body.id;
 
         const deletestatus = await samspaymentdetailsschemasdetails.findByIdAndRemove(idtodelete);
 
