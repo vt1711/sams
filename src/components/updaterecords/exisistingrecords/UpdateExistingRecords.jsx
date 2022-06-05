@@ -1,6 +1,8 @@
-import React ,{useEffect,useState}from 'react'
+import React, { useEffect, useState } from 'react'
 import EditButton from './EditButton'
 import './updateexistingrecords.css'
+import FormLabel from '../addform/FormLabel'
+import FormInput from '../addform/FormInput'
 //getting data via json file
 //const data = require('../../../json/records.json');
 //console.log(data);
@@ -12,23 +14,24 @@ const UpdateExistingRecords = () => {
   // const { records } = data;
 
   const [rowcss, setRowcss] = useState('');
- 
+
   const highlightRow =(selectedrow,action)=>{
     if(action==="edit"){
-      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
-      updateRecords(selectedrow);
-      console.log(selectedrow)
+      selectedrow.parentNode.nextSibling.style.display = "block";
+      // selectedrow.style.backgroundColor="rgb(77, 31, 110)";
+      // updateRecords(selectedrow);
+      // console.log(selectedrow)
 
     }
     else if(action==="delete") {
       selectedrow.style.backgroundColor="rgb(77, 31, 110)";
       deleteRecord(selectedrow);
     }
-      
+
   }
   const unHighlightRow = (selectedrow)=>{
-      // console.log("....row....",rowcss);
-      selectedrow.style.backgroundColor="transparent";
+    // console.log("....row....",rowcss);
+    selectedrow.style.backgroundColor="transparent";
   }
 
   ///////////////////////////////////////get data from db start/////////////////////////////
@@ -145,6 +148,13 @@ const UpdateExistingRecords = () => {
 
   /////////////////////////////////update data in db end///////////////////////////////////////
 
+  ///////////////////////////for closing updateinput div start/////////////////////////
+  const closeupdatediv = (e) =>{
+    e.target.parentNode.parentNode.style.display="none";    
+  }
+  ////////////////////////////////////////////////////////////////////////////////////
+
+
   return (
     <>
       <table className='updateexisttble'>
@@ -177,6 +187,43 @@ const UpdateExistingRecords = () => {
         }
 
       </table>
+      <div className='updateinputdiv'>
+      <div >
+      <button onClick={(e)=>closeupdatediv(e)} className='closelogo material-symbols-outlined'>close</button>
+      </div>
+      <div className='updateform'>
+      <form method='POST' >
+          <FormLabel inputfor="Name" />
+          <FormInput
+            // onchange={(value)=>{setName(value)}}
+            class="updateinputfield nameip" inputforid="Name" inputtype="text"
+          /> <br /><br />
+          <FormLabel inputfor="Address" />
+          <FormInput
+            // onchange={(value)=>{setAddress(value)}}
+            class="updateinputfield addressip" inputforid="Address" inputtype="text"
+          /> <br /><br />
+          <FormLabel inputfor="Status" />
+
+
+          <input type="radio" name='paymentstatus' id='Paid' value="Paid" className='updatepaidradiobtn'
+          // onClick={(e)=>setPaymentstatus(e.target.value)}
+          />
+          <label htmlFor="Paid" className='updatepaidlabel'>Paid </label>
+
+          <input type="radio" name='paymentstatus' id='Unpaid' value="Unpaid" className='updateunpaidradiobtn'
+          // onClick={(e)=>setPaymentstatus(e.target.value)}
+          />
+          <label htmlFor="Unpaid" className='updateunpaidlabel'>Unpaid </label>
+
+
+          <input className='updateaddbtn' type="submit" value="Update"
+          //  onClick={(e)=>addUserFunction(e)} 
+          />
+        </form>
+      </div>
+       
+      </div>
 
 
     </>
