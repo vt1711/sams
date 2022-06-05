@@ -7,9 +7,11 @@
 }
 .navlogo{
     float: left;
-    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 0.7rem 0 0 1rem;
     text-decoration: none;
-    color: beige;
+    color:white;
+    
+    
 }
 .navoptions{
    float: right; 

@@ -10,17 +10,17 @@ const Navbar = () => {
           <div >
             <NavLink
               to='/'
-              className={({ isActive }) => "navlogo" + ( isActive ? " activenavlink " : "")}
+              className="navlogo"
             >SAMS</NavLink>
           </div>
           <div className="navoptions">
             <NavLink
-              to='/viewrecords'
+              to='/viewrecords/graphicalview'
               className={({ isActive }) => "navlinks" + ( isActive ? " activenavlink " : "")}
             >View Records</NavLink>
             <NavLink
               className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
-              to='/updaterecords'>Update Records</NavLink>
+              to='/updaterecords/updateexisting'>Update Records</NavLink>
           </div>
 
         
