@@ -6,21 +6,63 @@ import FormInput from '../addform/FormInput'
 //getting data via json file
 //const data = require('../../../json/records.json');
 //console.log(data);
-
+    
+    // for getting name status and address of the selected row
+    // console.log(editrow.childNodes[0].innerText);
+    // console.log(editrow.childNodes[1].innerText);
+    // console.log(editrow.childNodes[2].innerText);
 
 
 const UpdateExistingRecords = () => {
-  //json file destructuring
-  // const { records } = data;
+  
+  let Data;
+  const [records, setRecords] = useState([]);
+  const [updaterow,setUpdaterow] =useState('');
+  const [updatediv,setUpdatediv] = useState('');
+  const [name ,setName]= useState('');
+  const [address ,setAddress] =useState('');
+  const [paymentstatus,setPaymentstatus] = useState('');
 
-  const [rowcss, setRowcss] = useState('');
+  const getUpdateData = (selectedrow) =>{
+    
+    let currentname=selectedrow.childNodes[0].innerText;
+    let currentaddress=selectedrow.childNodes[1].innerText;
+    let currentpaymentstatus=selectedrow.childNodes[2].innerText;
+
+    let updatenameinputelement = selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[1];
+    let updateaddressinputelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[6];
+    let updatepaidinputradioelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[11];
+    let updateunpaidinputradioelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[13];
+    
+    // console.log("...currentname..",currentname);
+    // console.log("...currentaddress..",currentaddress);
+    // console.log("...currentpaymentstatus..",currentpaymentstatus);
+    // console.log("...updatenameinputelement..",updatenameinputelement);
+    // console.log("...updateaddressinputelement..",updateaddressinputelement);
+    // console.log("........updatepaidinputelement......",updatepaidinputradioelement);
+    // console.log("........updateunpaidinputradioelement......",updateunpaidinputradioelement);
+
+    updatenameinputelement.value=currentname;
+    setName(currentname);
+    updateaddressinputelement.value=currentaddress;
+    setAddress(currentaddress);
+
+    setPaymentstatus(currentpaymentstatus);
+    if(currentpaymentstatus==="Paid"){
+      updatepaidinputradioelement.checked='true';
+    }
+    else if(currentpaymentstatus==="Unpaid"){
+      updateunpaidinputradioelement.checked='true';
+    }
+    
+  }
 
   const highlightRow =(selectedrow,action)=>{
     if(action==="edit"){
+      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
       selectedrow.parentNode.nextSibling.style.display = "block";
-      // selectedrow.style.backgroundColor="rgb(77, 31, 110)";
-      // updateRecords(selectedrow);
-      // console.log(selectedrow)
+      setUpdatediv(selectedrow.parentNode.nextSibling);
+      getUpdateData(selectedrow);
 
     }
     else if(action==="delete") {
@@ -30,13 +72,11 @@ const UpdateExistingRecords = () => {
 
   }
   const unHighlightRow = (selectedrow)=>{
-    // console.log("....row....",rowcss);
     selectedrow.style.backgroundColor="transparent";
   }
 
   ///////////////////////////////////////get data from db start/////////////////////////////
-  let Data;
-  const [records, setRecords] = useState([]);
+  
   const getRecords = async () => {
     let res;
     res = await fetch(`/showrecords`, {
@@ -80,9 +120,9 @@ const UpdateExistingRecords = () => {
   /////////////////////////////////////delete data from db start////////////////////////////////
 
   const deleteRecord = async (selectedrow) => {
-    // console.log("..............delete.......", deleterecord_id);
+
     const {id} = selectedrow;
-    console.log("....delete fun....",id);
+  
     const res = await fetch("/updaterecords/updateexisting/delete", {
       method: "DELETE",
       headers: {
@@ -94,16 +134,13 @@ const UpdateExistingRecords = () => {
     })
     const result = await res.json();
 
-    // console.log(".............delete..result..........", result);
     if (res.status === 422) {
 
-      // console.log("record deletion not successfull");
-      window.alert("record deletion not successfull");
+      window.alert("Deletion Error");
     }
     else {
 
-      // console.log("record deletion successfull",result);
-      alert("record deletion successfull");
+      alert("Record Deleted !");
       unHighlightRow(selectedrow);
       getRecords();
     }
@@ -114,10 +151,10 @@ const UpdateExistingRecords = () => {
 
   ///////////////////////////////update data in db start/////////////////////////////////////////
 
-  const updateRecords = async (selectedrow) => {
+  const updateRecords = async (e) => {
 
-    // console.log("..............editid.......", editrecord_id);
-
+    e.preventDefault();
+    
     const res = await fetch("/updaterecords/updateexisting/update", {
       method: "PATCH",
       headers: {
@@ -125,39 +162,52 @@ const UpdateExistingRecords = () => {
 
       },
       body: JSON.stringify({
-        _id: selectedrow.id,
-        name: 'Shyam',
-        address: 'oookkk',
-        status: 'unpaid',
+        _id: updaterow.id,
+        name: name,
+        address: address,
+        status: paymentstatus
       })
     })
+    
     const result = await res.json();
 
     if (res.status === 422) {
-      // console.log("updation failed");
-      alert("updation failed");
-
+      
+      alert("Updation Error");
     }
     else {
-      // console.log("updation successfull", result);
-      alert("updation successfull");
-      unHighlightRow(selectedrow);
+
+      alert("Updation Successfull !");
+      updatediv.style.display="none";  
+      unHighlightRow(updaterow);
       getRecords();
     }
   };
 
-  /////////////////////////////////update data in db end///////////////////////////////////////
+  /////////////////////////////////update data in db end//////////////////////////
 
-  ///////////////////////////for closing updateinput div start/////////////////////////
-  const closeupdatediv = (e) =>{
-    e.target.parentNode.parentNode.style.display="none";    
-  }
-  ////////////////////////////////////////////////////////////////////////////////////
+  
+  ///////////////////////////closing updateinput div start///////////////////////
+    const closeupdatediv = () =>{
+      updatediv.style.display="none";   
+      updaterow.style.backgroundColor="transparent";
+    }
+  ///////////////////////////closing updateinput div end////////////////////////
+  
 
+
+    ///////////////////////test function/////////////////////
+    // const fun = (e)=>{                                  //
+    //  e.preventDefault();                                //
+    //  console.log("...updatedivclose...",updatediv);     //
+    // }                                                   //
+    /////////////////////////////////////////////////////////
+ 
 
   return (
     <>
       <table className='updateexisttble'>
+    
         <tr className='updateexistrow'>
           <th className='updateexistth'>Name</th>
           <th className='updateexistth'>Address</th>
@@ -172,7 +222,7 @@ const UpdateExistingRecords = () => {
                   <td key={`${ele._id}.${ele.address}`} className='updateexisttd'>{ele.address}</td>
                   <td key={`${ele._id}.${ele.status}`} className='updateexisttd'>{ele.status}</td>
                   <EditButton
-                    onclick={(e) => { highlightRow(e.target.parentNode,"edit"); }}
+                    onclick={(e) => { setUpdaterow(e.target.parentNode); highlightRow(e.target.parentNode,"edit"); }}
                     buttonclass='updateexisteditbtn' spanclass='material-symbols-outlined' spantext='edit' />
                   <EditButton
                     onclick={(e) => { highlightRow(e.target.parentNode,"delete"); }}
@@ -189,36 +239,34 @@ const UpdateExistingRecords = () => {
       </table>
       <div className='updateinputdiv'>
       <div >
-      <button onClick={(e)=>closeupdatediv(e)} className='closelogo material-symbols-outlined'>close</button>
+      <button onClick={()=>closeupdatediv()} className='closelogo material-symbols-outlined'>close</button>
       </div>
       <div className='updateform'>
       <form method='POST' >
           <FormLabel inputfor="Name" />
           <FormInput
-            // onchange={(value)=>{setName(value)}}
+            onchange={(value)=>{setName(value)}}
             class="updateinputfield nameip" inputforid="Name" inputtype="text"
           /> <br /><br />
           <FormLabel inputfor="Address" />
           <FormInput
-            // onchange={(value)=>{setAddress(value)}}
+            onchange={(value)=>{setAddress(value)}}
             class="updateinputfield addressip" inputforid="Address" inputtype="text"
           /> <br /><br />
           <FormLabel inputfor="Status" />
-
-
           <input type="radio" name='paymentstatus' id='Paid' value="Paid" className='updatepaidradiobtn'
-          // onClick={(e)=>setPaymentstatus(e.target.value)}
+          onClick={(e)=>setPaymentstatus(e.target.value)}
           />
           <label htmlFor="Paid" className='updatepaidlabel'>Paid </label>
 
           <input type="radio" name='paymentstatus' id='Unpaid' value="Unpaid" className='updateunpaidradiobtn'
-          // onClick={(e)=>setPaymentstatus(e.target.value)}
+          onClick={(e)=>setPaymentstatus(e.target.value)}
           />
           <label htmlFor="Unpaid" className='updateunpaidlabel'>Unpaid </label>
 
 
           <input className='updateaddbtn' type="submit" value="Update"
-          //  onClick={(e)=>addUserFunction(e)} 
+           onClick={(e)=>updateRecords(e)} 
           />
         </form>
       </div>
