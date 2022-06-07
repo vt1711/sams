@@ -1,5 +1,5 @@
 import React ,{useState ,useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import './addform.css'
 import FormInput from './FormInput'
 import FormLabel from './FormLabel'
@@ -9,7 +9,7 @@ const AddForm = () => {
    const [address,setAddress] =useState('');
    const [paymentstatus,setPaymentstatus] =useState('');
    const [user,setUser]=useState('');
-   const navigate =useNavigate();
+  //  const navigate =useNavigate();
 
    useEffect(() => {
      
@@ -29,6 +29,23 @@ const AddForm = () => {
     e.preventDefault();
     
     const { name,address,paymentstatus} = user;
+
+    if(name!==""){ 
+       if(address!==""){
+          if(paymentstatus!==""){}
+          else{ alert("Please select payment status");
+                return;
+              }
+       }
+       else{ alert("Please enter address"); 
+             return;
+           }
+
+    }
+    else{ alert("Please enter name");
+          return; 
+        }
+
     
     const res = await fetch("/updaterecords/addnew", {
       method: "POST",
@@ -50,7 +67,11 @@ const AddForm = () => {
     else {
       console.log("success");
       window.alert("Record Generated");
-      // navigate("/");
+      setName('');
+      setAddress('');
+      setPaymentstatus('');
+      e.target.parentElement.reset();
+
     }
   }
 

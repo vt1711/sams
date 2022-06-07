@@ -1,0 +1,95 @@
+.outerdiv {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  margin: 11rem 0 0 17%;
+}
+@keyframes logosize {
+  0% {
+    margin-top: 0rem;
+  }
+  50% {
+    margin-top: 2rem;
+  }
+  100% {
+    margin-top: 0rem;
+  }
+}
+.errorlogo {
+  height: 20rem;
+  width: 20rem;
+  animation: logosize 2s linear 0s infinite normal forwards;
+  animation-play-state: running;
+}
+.errortext {
+  height: fit-content;
+  width: fit-content;
+  margin: 1rem 0 0 7rem;
+  text-align: center;
+}
+.error,
+.message,
+.errortype {
+  color: aliceblue;
+}
+.error {
+  font-size: 4rem;
+}
+.errortype {
+  font-size: 9rem;
+}
+.message {
+  font-size: 2rem;
+}
+
+.loginredirectbtn {
+  border: 0.4px dotted white;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  color: white;
+  background-color: rgb(31, 5, 49);
+  box-shadow: rgb(255, 255, 255) 0px 25px 50px -12px;
+}
+
+.loginredirectbtn:hover {
+  font-size: 1rem;
+}
+.loginredirectbtn:active {
+  font-weight: bolder;
+}
+
+@media only screen and (max-width: 600px) {
+  .outerdiv {
+    margin: 5rem 0 0 3rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  @keyframes logosize {
+    0% {
+      margin-left: 0rem;
+    }
+    50% {
+      margin-left: 5rem;
+    }
+    100% {
+      margin-left: 0rem;
+    }
+  }
+  .errorlogo {
+    height: 10rem;
+    width: 10rem;
+  }
+  .errortext {
+    margin: 3rem 0 0 3rem;
+  }
+  .error {
+    font-size: 2rem;
+  }
+  .errortype {
+    font-size: 7rem;
+  }
+  .message {
+    font-size: 1rem;
+  }
+}

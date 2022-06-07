@@ -1,4 +1,5 @@
 import React, { useEffect, useState }  from 'react'
+import { useNavigate } from 'react-router-dom';
 
 //for getting data from json file
 // const data = require("../../json/records.json");
@@ -9,8 +10,8 @@ import React, { useEffect, useState }  from 'react'
 
 const RecordsTable = () => {
 
-  
-///////////////////////////////////////db data/////////////////////////////
+const navigate = useNavigate();  
+///////////////////////////////////////get db data/////////////////////////////
 let Data =[];
 const [recordss, setRecordss] = useState([]);
 
@@ -21,44 +22,36 @@ const getfunction = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-       }
+       "Accept": "application/json"
+       },
+       "credentials" :"include"
       });
   
     Data = await res.json();
     // console.log(Data[0].name);
     // alert(Data[0].name);
     // alert(JSON.stringify(Data));
-    console.log(Data)
-    if (res.status === 422 || !Data) {
+    console.log("..client showrecords res data..",Data)
+    if(res.status===401){
+        alert("anauzorized access");
+        navigate('/unauthorized');
+    }
+    else if (res.status === 404 || !Data) {
 
       console.log("Error ! Could not fetch records");
       window.alert("Error ! Could not fetch records");
     }
     else {
       console.log("Records fetched");
-      // window.alert("Records fetched");
-
-      // console.log("dataaaaaaaa pre");
-      // console.log(data);
-      // console.log("cetntereeeeeeeee pre");
-      // console.log(center);
-
-
       setRecordss(Data);
-      console.log("....Data.......",Data);
-    
+      console.log("....client showrecords fetched Data.......",Data);
     }
   }
 
  useEffect(() => {
    getfunction();
- 
-   
  },[]);
  
-
-
-
 /////////////////////////////db data///////////////////////////////////////////////
 
 

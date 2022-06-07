@@ -8,6 +8,7 @@ import UpdateExistingRecords from './components/updaterecords/exisistingrecords/
 import Login from './components/login/Login';
 import PieChart from './components/recordstable/piechart/PieChart'
 import RecordsTable from './components/recordstable/RecordsTable'
+import Unauthorized from './components/errorpages/unauthorized/Unauthorized';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="addnew" element={<AddForm />} />
         </Route>
 
-
+       <Route path="/unauthorized" element={<Unauthorized/>}/>
 
       </Routes>
     </>

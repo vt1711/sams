@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './piechart.css'
 import {
   Chart, ArcElement, LineElement, BarElement,
@@ -30,6 +31,8 @@ Chart.register(
 
 const PieChart = () => {
 
+  const navigate =useNavigate();
+
   let mychart, upcount, pcount;
 
   ///////////////////////////////////////db data fetch/////////////////////////////
@@ -42,16 +45,22 @@ const PieChart = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-
-      }
-    });
+         Accept: "application/json"
+         },
+         credentials :"include"
+        });
 
     Data = await res.json();
     // console.log(Data[0].full_name);
     // alert(Data[0].full_name);
     // alert(JSON.stringify(Data));
     console.log(Data)
-    if (res.status === 422 || !Data) {
+    
+    if(res.status=== 401){
+      alert("Unauthorized access");
+      navigate('/unauthorized');
+    }
+    else if (res.status === 404 || !Data) {
 
       console.log("Error ! Could not fetch records");
       window.alert("Error ! Could not fetch records");
@@ -138,7 +147,7 @@ const PieChart = () => {
 
       //first this return will be executed which clean ups the code
       return () => {
-        console.log("dddddddddddddddddddddddddddd");
+        console.log("....old doughnut cleanup...");
         mychart.destroy();
       }
 

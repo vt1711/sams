@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const authenticate =require("../middleware/authenticate");
+const cookieparser = require("cookie-parser");
+router.use(cookieparser());
 
 require("../db/conn");
 
@@ -14,8 +17,8 @@ router.post('/login', async (req, res) => {
     try {
         let token;
         const { userid, password } = req.body;
-        console.log("body.......................................");
-        console.log(req.body);
+        console.log(".....server login req.body.....",req.body);
+        
         if (!userid || !password) {
             return res.status(400).json({ error: "Cannot login , empty fields" });
         }
@@ -24,21 +27,18 @@ router.post('/login', async (req, res) => {
 
             // const passwordmatch = await bcrypt.compare(password, user.password)
 
-
             if (password===user.password) {
                 console.log("Successfully logged in");
 
                 token= await user.generateAuthToken();
-                console.log(token);
+                console.log( "...server login generated token...",token);
 
                 res.cookie("jwtoken",token,{
-                    expires: new Date(Date.now() + 30000000000),
+                    expires: new Date(Date.now() + 86400000),
                     httpOnly:true
                 }
                 );
 
-
-                // res.send(token);
                 res.status(200).json({ message: "Successfully logged in" });
 
             }
@@ -95,21 +95,21 @@ router.post('/updaterecords/addnew', async (req, res) => {
 });
 
 
-router.get(`/showrecords`, async (req, res) => {
+router.get(`/showrecords`,authenticate ,async (req, res) => {
     try {
         // console.log(req.query);
+        // console.log("..server show records req.token...",req.token);
+        
         const records = await samspaymentdetailsschemasdetails.find({})
-        console.log("........server fetched records........",records);
+        console.log("........server showrecords records........",records);
         if (records.length===0) {
-            res.status(422).send(records);
-            console.log("..........no records found");
+            res.status(404).send({error:"No records found"});
+            console.log("...server showrecords no records found...");
         }
         else {
             //console.log(records);
-            res.send(records);
+            res.status(200).send(records);
         }
-
-
 
 
     } catch (error) {

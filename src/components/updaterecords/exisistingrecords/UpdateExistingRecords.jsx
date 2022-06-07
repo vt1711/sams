@@ -3,6 +3,7 @@ import EditButton from './EditButton'
 import './updateexistingrecords.css'
 import FormLabel from '../addform/FormLabel'
 import FormInput from '../addform/FormInput'
+import { useNavigate } from 'react-router-dom'
 //getting data via json file
 //const data = require('../../../json/records.json');
 //console.log(data);
@@ -15,6 +16,7 @@ import FormInput from '../addform/FormInput'
 
 const UpdateExistingRecords = () => {
   
+  const navigate = useNavigate();
   let Data;
   const [records, setRecords] = useState([]);
   const [updaterow,setUpdaterow] =useState('');
@@ -83,9 +85,10 @@ const UpdateExistingRecords = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-
-      }
-    });
+         Accept: "application/json"
+         },
+         credentials :"include"
+        });
 
     Data = await res.json();
 
@@ -93,8 +96,11 @@ const UpdateExistingRecords = () => {
     // alert(Data[0].full_name);
     // alert(JSON.stringify(Data));
     // console.log(Data)
-
-    if (res.status === 422 || !Data) {
+    if(res.status=== 401){
+      alert("Unauthorized access");
+      navigate('/unauthorized');
+    }
+    else if (res.status === 404 || !Data) {
 
       // console.log("Error ! Could not fetch records");
       window.alert("Error ! Could not fetch records");
@@ -154,6 +160,23 @@ const UpdateExistingRecords = () => {
   const updateRecords = async (e) => {
 
     e.preventDefault();
+
+    if(name!==""){ 
+      if(address!==""){
+         if(paymentstatus!==""){}
+         else{ alert("Please select payment status");
+               return;
+             }
+      }
+      else{ alert("Please enter address"); 
+            return;
+          }
+
+   }
+   else{ alert("Please enter name");
+         return; 
+       }
+
     
     const res = await fetch("/updaterecords/updateexisting/update", {
       method: "PATCH",
