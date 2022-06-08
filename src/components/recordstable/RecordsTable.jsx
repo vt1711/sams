@@ -33,7 +33,7 @@ const getfunction = async () => {
     // alert(JSON.stringify(Data));
     console.log("..client showrecords res data..",Data)
     if(res.status===401){
-        alert("anauzorized access");
+        
         navigate('/unauthorized');
     }
     else if (res.status === 404 || !Data) {

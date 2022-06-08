@@ -57,7 +57,7 @@ const PieChart = () => {
     console.log(Data)
     
     if(res.status=== 401){
-      alert("Unauthorized access");
+      
       navigate('/unauthorized');
     }
     else if (res.status === 404 || !Data) {

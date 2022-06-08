@@ -97,7 +97,7 @@ const UpdateExistingRecords = () => {
     // alert(JSON.stringify(Data));
     // console.log(Data)
     if(res.status=== 401){
-      alert("Unauthorized access");
+      
       navigate('/unauthorized');
     }
     else if (res.status === 404 || !Data) {

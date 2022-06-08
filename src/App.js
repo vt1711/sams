@@ -8,27 +8,46 @@ import UpdateExistingRecords from './components/updaterecords/exisistingrecords/
 import Login from './components/login/Login';
 import PieChart from './components/recordstable/piechart/PieChart'
 import RecordsTable from './components/recordstable/RecordsTable'
-import Unauthorized from './components/errorpages/unauthorized/Unauthorized';
+import Errorpage from './components/errorpages/Errorpage';
+import unauthorizedimg from './components/errorpages/unauthorizedimg.png'
+import error404img from './components/errorpages/error404img.png'
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login/>}/>
-        
-       
+        <Route path="/" element={<Login />} />
+
+
         <Route path="viewrecords" element={<ViewRecords />}>
-          <Route path="listview" element={<RecordsTable/> } />
-          <Route path="graphicalview" element={<PieChart/>} />
+          <Route path="listview" element={<RecordsTable />} />
+          <Route path="graphicalview" element={<PieChart />} />
         </Route>
 
         <Route path="updaterecords" element={<UpdateRecords />}>
-          <Route path="updateexisting" element={<UpdateExistingRecords/> } />
+          <Route path="updateexisting" element={<UpdateExistingRecords />} />
           <Route path="addnew" element={<AddForm />} />
         </Route>
 
-       <Route path="/unauthorized" element={<Unauthorized/>}/>
+        <Route path="/unauthorized"
+               element={<Errorpage
+                          imgsrc={unauthorizedimg}
+                          errorname="401"
+                          errormessage="Unauthorized access . kindly login"
+                          errorbtntext="Login"
+                        />
+                       } 
+        />
+        <Route path="*"
+               element={<Errorpage
+                          imgsrc={error404img}
+                          errorname="404"
+                          errormessage="Page not found . Go to Home"
+                          errorbtntext="Home"
+                         />
+                        } 
+        />
 
       </Routes>
     </>
