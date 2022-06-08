@@ -196,7 +196,7 @@ const UpdateExistingRecords = () => {
 
     if (res.status === 422) {
       
-      alert("Updation Error");
+      alert("Updation Error,name already exists");
     }
     else {
 

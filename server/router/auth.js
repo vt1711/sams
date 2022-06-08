@@ -147,11 +147,19 @@ router.delete(`/updaterecords/updateexisting/delete`, async (req, res) => {
 router.patch('/updaterecords/updateexisting/update', async (req, res) => {
     // console.log(req.body);
     const { _id, name, address, status } = req.body;
-    const result = await samspaymentdetailsschemasdetails.findByIdAndUpdate(_id, {
-        name, address, status
-    })
-    // console.log(data);
-    res.status(200).send(result);
+
+    const userexists = await samspaymentdetailsschemasdetails.findOne({ name: name });
+
+    if (userexists) { return res.status(422).json({ error: "user exists" }); }
+    else{
+        const result = await samspaymentdetailsschemasdetails.findByIdAndUpdate(_id, {
+            name, address, status
+        })
+        // console.log(data);
+        res.status(200).send(result);
+    }
+
+   
 });
 
 
