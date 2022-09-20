@@ -162,7 +162,20 @@ router.patch('/updaterecords/updateexisting/update', async (req, res) => {
    
 });
 
+router.get(`/logout`,authenticate ,async (req, res) => {
+    try{
+    
+    const result = await res.clearCookie('jwtoken',{path: '/' });
+    res.status(200).send('User logged out');
+    }
+    catch(err){
+        console.log(err);
+    }
+    
 
+
+
+});
 
 
 module.exports = router;

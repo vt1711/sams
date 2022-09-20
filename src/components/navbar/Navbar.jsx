@@ -21,6 +21,9 @@ const Navbar = () => {
             <NavLink
               className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
               to='/updaterecords/updateexisting'>Update Records</NavLink>
+          <NavLink
+              className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
+              to='/logout'>Logout</NavLink>          
           </div>
 
         

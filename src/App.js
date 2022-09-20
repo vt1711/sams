@@ -11,13 +11,16 @@ import RecordsTable from './components/recordstable/RecordsTable'
 import Errorpage from './components/errorpages/Errorpage';
 import unauthorizedimg from './components/errorpages/unauthorizedimg.png'
 import error404img from './components/errorpages/error404img.png'
+import Logout from './components/logout/Logout';
+
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
+      <Route path="/" element={<Login />} />
+        <Route path="/logout" element={<Logout/>} />
 
 
         <Route path="viewrecords" element={<ViewRecords />}>
