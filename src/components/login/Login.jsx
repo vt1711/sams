@@ -1,13 +1,17 @@
 import React, { useState }  from 'react'
+import { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import FormInput from '../updaterecords/addform/FormInput'
 import FormLabel from '../updaterecords/addform/FormLabel'
 import './login.css'
+import { UserContext } from '../../App';
 
 const Login = () => {
   const navigate = useNavigate();  
   const [userid,setUserid] = useState('');
   const [password,setPassword] = useState('');
+
+  const {state,dispatch} =useContext(UserContext);
 
   const userAuthenticate = async (e)=>{
      
@@ -31,6 +35,7 @@ const Login = () => {
       window.alert("Invalid credentials");
     }
     else{
+      dispatch({type:"USER",payload:true});
       window.alert("Sign in success");
       navigate('/viewrecords');
     }

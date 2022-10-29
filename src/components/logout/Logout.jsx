@@ -1,10 +1,15 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../App';
+import { useContext } from 'react';
 
 
 const Logout = () => {
     const  navigate=useNavigate();
+    
+  const {state,dispatch} =useContext(UserContext);
+
 
     useEffect(() => {
         adminlogout();
@@ -20,6 +25,8 @@ const Logout = () => {
             credentials:"include"
            }).then( (res)=>{
             if(res.status===200){
+      dispatch({type:"USER",payload:false});
+
                 alert("logged out !")
                 navigate("/");
              }

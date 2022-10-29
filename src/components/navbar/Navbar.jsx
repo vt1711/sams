@@ -1,8 +1,35 @@
-import React from 'react';
+import React ,{useContext}from 'react';
 import { NavLink } from "react-router-dom";
 import './navbar.css';
+import { UserContext } from '../../App';
 
 const Navbar = () => {
+  const MenuItems =()=>{
+    const {state,dispatch} = useContext(UserContext); 
+    if(state===false){
+      return(
+            <>
+              
+            </>
+      )
+    }
+    else{
+      return(
+        <>
+           <NavLink
+                to='/viewrecords/graphicalview'
+                className={({ isActive }) => "navlinks" + ( isActive ? " activenavlink " : "")}
+              >View Records</NavLink>
+              <NavLink
+                className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
+                to='/updaterecords/updateexisting'>Update Records</NavLink>
+            <NavLink
+                className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
+                to='/logout'>Logout</NavLink> 
+        </>
+      )
+    }
+  }
   return (
     <>
       <div className="navbar">
@@ -14,16 +41,7 @@ const Navbar = () => {
             >SAMS</NavLink>
           </div>
           <div className="navoptions">
-            <NavLink
-              to='/viewrecords/graphicalview'
-              className={({ isActive }) => "navlinks" + ( isActive ? " activenavlink " : "")}
-            >View Records</NavLink>
-            <NavLink
-              className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
-              to='/updaterecords/updateexisting'>Update Records</NavLink>
-          <NavLink
-              className={({isActive})=> "navlinks" + (isActive ? " activenavlink " : " ")}
-              to='/logout'>Logout</NavLink>          
+              <MenuItems/>
           </div>
 
         
