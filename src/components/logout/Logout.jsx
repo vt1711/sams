@@ -28,7 +28,7 @@ const Logout = () => {
       dispatch({type:"USER",payload:false});
 
                 alert("logged out !")
-                navigate("/");
+                navigate("/login");
              }
              else{
                 alert("logout error");

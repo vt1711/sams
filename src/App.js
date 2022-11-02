@@ -15,6 +15,7 @@ import Logout from "./components/logout/Logout";
 import { createContext } from "react";
 import { useReducer } from "react";
 import { initialState,reducer } from "./reducer/UseReducer";
+import Features from "./components/features/Features";
 
 
 export const UserContext = createContext();
@@ -23,7 +24,9 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/features" element={<Features />} />
 
       <Route path="viewrecords" element={<ViewRecords />}>
         <Route path="listview" element={<RecordsTable />} />

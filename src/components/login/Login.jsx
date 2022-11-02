@@ -37,7 +37,7 @@ const Login = () => {
     else{
       dispatch({type:"USER",payload:true});
       window.alert("Sign in success");
-      navigate('/viewrecords');
+      navigate('/viewrecords/graphicalview');
     }
   }
 

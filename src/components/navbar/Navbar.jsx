@@ -33,24 +33,51 @@ const Navbar = () => {
           >
             Logout
           </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              "navlinks" + (isActive ? " activenavlink " : " ")
+            }
+            to="/features"
+          >
+            Features
+          </NavLink>
         </>
       );
     } else {
       return (
-        <></>
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              "navlinks" + (isActive ? " activenavlink " : " ")
+            }
+            to="/login"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              "navlinks" + (isActive ? " activenavlink " : " ")
+            }
+            to="/features"
+          >
+            Features
+          </NavLink>
+        </>
       );
     }
   };
   return (
     <>
       <div className="navbar">
-        <div>
-          <NavLink to="/" className="navlogo">
+        <div className="navlogo">
+          {/* <NavLink to="/" className="navlogo">
             SAMS
-          </NavLink>
+          </NavLink> */}
+          SAMS
         </div>
         <div className="navoptions">
           <MenuItems />
+         
         </div>
       </div>
     </>
