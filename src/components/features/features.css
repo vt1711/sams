@@ -1,5 +1,5 @@
 .featuresh1 {
-  color: aqua;
+  padding: 3rem 0 0 0;
 }
 .infoblock {
   /* background-color: black; */
@@ -7,7 +7,6 @@
   justify-content: space-evenly;
   align-content:space-between;
   margin: 0 0 3rem 0;
-  
 }
 .righttext{
   flex-direction: row-reverse;

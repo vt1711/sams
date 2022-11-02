@@ -4,6 +4,28 @@ import "./navbar.css";
 import { UserContext } from "../../App";
 
 const Navbar = () => {
+  const hamburgertoggle = () => {
+    let hamburgericon = document.getElementById("hamburgericon");
+    let hamburgerlist = document.getElementById("hamburgerlist");
+    let hamburgerdiv = document.getElementById("hamburgerdiv");
+
+    if (hamburgerlist.style.display === "none") {
+      
+        hamburgericon.style.color = "blueviolet";
+        hamburgerdiv.classList.add("hamburgeropen");
+        hamburgerdiv.classList.remove("hamburgerclose");
+        hamburgerlist.style.display="block"
+      
+    } else {
+      
+        hamburgericon.style.color = "white";
+        hamburgerdiv.classList.remove("hamburgeropen");
+        hamburgerdiv.classList.add("hamburgerclose");
+        hamburgerlist.style.display="none";
+      
+    }
+  };
+
   const MenuItems = () => {
     const { state, dispatch } = useContext(UserContext);
     if (state === true) {
@@ -77,7 +99,20 @@ const Navbar = () => {
         </div>
         <div className="navoptions">
           <MenuItems />
-         
+        </div>
+        <div className="hamburgerdiv" id="hamburgerdiv">
+          <div
+            className="material-symbols-outlined hamburgericon"
+            id="hamburgericon"
+            onClick={() => {
+              hamburgertoggle()
+            }}
+          >
+            menu
+          </div>
+          <div className="hamburgerlist" id="hamburgerlist">
+            <MenuItems />
+          </div>
         </div>
       </div>
     </>

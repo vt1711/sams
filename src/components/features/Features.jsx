@@ -10,7 +10,7 @@ const Features = () => {
         <Infoblock
           blocktype="lefttext"
           texttitle="Secure Access"
-          text=" All the account records are securely stored in the database and can be accessed only after logging in with the credentials. "
+          text=" All your records are securely stored in the database and can be accessed only after logging in with the credentials. "
           image={{ img1: "admin_panel_settings", img2: "" }}
         />
         <Infoblock

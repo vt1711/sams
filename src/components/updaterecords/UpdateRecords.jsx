@@ -4,6 +4,7 @@ import { NavLink ,Outlet} from 'react-router-dom'
 const UpdateRecords = () => {
   return (
     <>
+        <div className='updaterecordsdiv'>
         <h1>Update Records</h1>
         <div className='updateoptionsdiv'>
           <NavLink 
@@ -14,6 +15,9 @@ const UpdateRecords = () => {
            to='addnew'>Add New Records</NavLink>
        </div>
         <Outlet/>
+
+        </div>
+       
     </>
   )
 }
