@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../updaterecords/addform/FormInput";
 import FormLabel from "../updaterecords/addform/FormLabel";
 import "./login.css";
+import config from "../../json/config.json"
 import { UserContext } from "../../App";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [userid, setUserid] = useState("");
-  const [password, setPassword] = useState("");
+  const [userid, setUserid] = useState(`${config.USERNAME}`);
+  const [password, setPassword] = useState(`${config.PASSWORD}`);
 
   const { state, dispatch } = useContext(UserContext);
 
@@ -26,7 +27,7 @@ const Login = () => {
       }),
     });
     const data = res.json();
-    console.log("....login res....", data);
+    // console.log("....login res....", data);
 
     if (res.status === 400 || !data) {
       window.alert("Invalid credentials");
@@ -40,10 +41,10 @@ const Login = () => {
   return (
     <>
       <div className="logindiv">
-        <h1> Welcome to Society Account Management System </h1>
+        <span className="logindivheading"> Welcome to Society Account Management System </span>
         <h4 className="h4login">Kindly Login to proceed</h4>
         <div className="loginformdiv">
-          <form method="POST">
+          <form method="POST" className="loginform">
             <FormLabel inputfor="UserId" class="loginlabel" />
             <FormInput
               onchange={(value) => {
@@ -52,9 +53,9 @@ const Login = () => {
               class="logininput logininputuserid"
               inputforid="UserId"
               inputtype="text"
+              inputvalue={`${config.USERNAME}`}
             />{" "}
-            <br />
-            <br />
+    
             <FormLabel
               inputfor="Password"
               class="loginlabel loginlabelpassword "
@@ -66,6 +67,7 @@ const Login = () => {
               class="logininput"
               inputforid="Password"
               inputtype="password"
+              inputvalue={`${config.PASSWORD}`}
             />
             <button
               onClick={(e) => {
@@ -77,6 +79,7 @@ const Login = () => {
             </button>
           </form>
         </div>
+        <p className="loginnote">Note : Credentials are prefilled for demonstration purpose . Kindly login without editing fields </p>
       </div>
     </>
   );

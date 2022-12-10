@@ -86,11 +86,13 @@ const AddForm = () => {
     <FormInput 
     onchange={(value)=>{setName(value)}}
     class="inputfield" inputforid="Name" inputtype="text" 
+    inputvalue=""
     /> <br /><br />
     <FormLabel inputfor="Address"/>
     <FormInput 
     onchange={(value)=>{setAddress(value)}}
     class="inputfield addressip" inputforid="Address" inputtype="text"
+    inputvalue=""
     /> <br /><br />
     <FormLabel  inputfor="Status"/>
     

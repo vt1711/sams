@@ -1,41 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import EditButton from './EditButton'
-import './updateexistingrecords.css'
-import FormLabel from '../addform/FormLabel'
-import FormInput from '../addform/FormInput'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import EditButton from "./EditButton";
+import "./updateexistingrecords.css";
+import FormLabel from "../addform/FormLabel";
+import { useNavigate } from "react-router-dom";
 //getting data via json file
 //const data = require('../../../json/records.json');
 //console.log(data);
-    
-    // for getting name status and address of the selected row
-    // console.log(editrow.childNodes[0].innerText);
-    // console.log(editrow.childNodes[1].innerText);
-    // console.log(editrow.childNodes[2].innerText);
 
+// for getting name status and address of the selected row
+// console.log(editrow.childNodes[0].innerText);
+// console.log(editrow.childNodes[1].innerText);
+// console.log(editrow.childNodes[2].innerText);
 
 const UpdateExistingRecords = () => {
-  
   const navigate = useNavigate();
   let Data;
   const [records, setRecords] = useState([]);
-  const [updaterow,setUpdaterow] =useState('');
-  const [updatediv,setUpdatediv] = useState('');
-  const [name ,setName]= useState('');
-  const [address ,setAddress] =useState('');
-  const [paymentstatus,setPaymentstatus] = useState('');
+  const [updaterow, setUpdaterow] = useState("");
+  const [updatediv, setUpdatediv] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [paymentstatus, setPaymentstatus] = useState("");
 
-  const getUpdateData = (selectedrow) =>{
-    
-    let currentname=selectedrow.childNodes[0].innerText;
-    let currentaddress=selectedrow.childNodes[1].innerText;
-    let currentpaymentstatus=selectedrow.childNodes[2].innerText;
+  const getUpdateData = (selectedrow) => {
+    let currentname = selectedrow.childNodes[0].innerText;
+    let currentaddress = selectedrow.childNodes[1].innerText;
+    let currentpaymentstatus = selectedrow.childNodes[2].innerText;
 
-    let updatenameinputelement = selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[1];
-    let updateaddressinputelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[6];
-    let updatepaidinputradioelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[11];
-    let updateunpaidinputradioelement =  selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0].childNodes[13];
-    
+    let updatenameinputelement =
+      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+        .childNodes[1];
+    let updateaddressinputelement =
+      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+        .childNodes[6];
+    let updatepaidinputradioelement =
+      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+        .childNodes[11];
+    let updateunpaidinputradioelement =
+      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+        .childNodes[13];
+
     // console.log("...currentname..",currentname);
     // console.log("...currentaddress..",currentaddress);
     // console.log("...currentpaymentstatus..",currentpaymentstatus);
@@ -44,51 +48,46 @@ const UpdateExistingRecords = () => {
     // console.log("........updatepaidinputelement......",updatepaidinputradioelement);
     // console.log("........updateunpaidinputradioelement......",updateunpaidinputradioelement);
 
-    updatenameinputelement.value=currentname;
+    updatenameinputelement.value = currentname;
     setName(currentname);
-    updateaddressinputelement.value=currentaddress;
+    updateaddressinputelement.value = currentaddress;
     setAddress(currentaddress);
 
     setPaymentstatus(currentpaymentstatus);
-    if(currentpaymentstatus==="Paid"){
-      updatepaidinputradioelement.checked='true';
+    if (currentpaymentstatus === "Paid") {
+      updatepaidinputradioelement.checked = "true";
+    } else if (currentpaymentstatus === "Unpaid") {
+      updateunpaidinputradioelement.checked = "true";
     }
-    else if(currentpaymentstatus==="Unpaid"){
-      updateunpaidinputradioelement.checked='true';
-    }
-    
-  }
+  };
 
-  const highlightRow =(selectedrow,action)=>{
-    if(action==="edit"){
-      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
+  const highlightRow = (selectedrow, action) => {
+    if (action === "edit") {
+      selectedrow.style.backgroundColor = "rgb(77, 31, 110)";
       selectedrow.parentNode.nextSibling.style.display = "block";
       setUpdatediv(selectedrow.parentNode.nextSibling);
       getUpdateData(selectedrow);
-
-    }
-    else if(action==="delete") {
-      selectedrow.style.backgroundColor="rgb(77, 31, 110)";
+    } else if (action === "delete") {
+      selectedrow.style.backgroundColor = "rgb(77, 31, 110)";
       deleteRecord(selectedrow);
     }
-
-  }
-  const unHighlightRow = (selectedrow)=>{
-    selectedrow.style.backgroundColor="transparent";
-  }
+  };
+  const unHighlightRow = (selectedrow) => {
+    selectedrow.style.backgroundColor = "transparent";
+  };
 
   ///////////////////////////////////////get data from db start/////////////////////////////
-  
+
   const getRecords = async () => {
     let res;
     res = await fetch(`/showrecords`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-         Accept: "application/json"
-         },
-         credentials :"include"
-        });
+        Accept: "application/json",
+      },
+      credentials: "include",
+    });
 
     Data = await res.json();
 
@@ -96,112 +95,94 @@ const UpdateExistingRecords = () => {
     // alert(Data[0].full_name);
     // alert(JSON.stringify(Data));
     // console.log(Data)
-    if(res.status=== 401){
-      
-      navigate('/unauthorized');
-    }
-    else if (res.status === 404 || !Data) {
-
+    if (res.status === 401) {
+      navigate("/unauthorized");
+    } else if (res.status === 404 || !Data) {
       // console.log("Error ! Could not fetch records");
       window.alert("Error ! Could not fetch records");
-    }
-    else {
+    } else {
       console.log("Records fetched");
 
       setRecords(Data);
-      console.log(".......fetched data.....", Data)
-
+      // console.log(".......fetched data.....", Data)
     }
-  }
+  };
 
   useEffect(() => {
     getRecords();
-
-
   }, []);
 
   ///////////////////////////////////get data from db end////////////////////////////////////////
 
-
   /////////////////////////////////////delete data from db start////////////////////////////////
 
   const deleteRecord = async (selectedrow) => {
+    const { id } = selectedrow;
 
-    const {id} = selectedrow;
-  
     const res = await fetch("/updaterecords/updateexisting/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id
-      })
-    })
+        id,
+      }),
+    });
     const result = await res.json();
 
     if (res.status === 422) {
-
       window.alert("Deletion Error");
-    }
-    else {
-
+    } else {
       alert("Record Deleted !");
       unHighlightRow(selectedrow);
       getRecords();
     }
-
   };
   ///////////////////////////////////delete data from db end/////////////////////////////////////
-
 
   ///////////////////////////////update data in db start/////////////////////////////////////////
 
   const updateRecords = async (e) => {
-
     e.preventDefault();
 
-    if(name!==""){ 
-      if(address!==""){
-         if(paymentstatus!==""){}
-         else{ alert("Please select payment status");
-               return;
-             }
+    if (name !== "") {
+      if (address !== "") {
+        if (paymentstatus !== "") {
+        } else {
+          alert("Please select payment status");
+          return;
+        }
+      } else {
+        alert("Please enter address");
+        return;
       }
-      else{ alert("Please enter address"); 
-            return;
-          }
+    } else {
+      alert("Please enter name");
+      return;
+    }
 
-   }
-   else{ alert("Please enter name");
-         return; 
-       }
-
-    
     const res = await fetch("/updaterecords/updateexisting/update", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-
       },
       body: JSON.stringify({
         _id: updaterow.id,
         name: name,
         address: address,
-        status: paymentstatus
-      })
-    })
-    
+        status: paymentstatus,
+      }),
+    });
+
     const result = await res.json();
 
     if (res.status === 422) {
-      
-      alert("Updation Error,name already exists");
-    }
-    else {
-
+      alert(
+        "Only payment status update is allowed\nFor updating name or address kindly delete this record and create a new record "
+      );
+    } else {
       alert("Updation Successfull !");
-      updatediv.style.display="none";  
+      updatediv.style.display = "none";
       unHighlightRow(updaterow);
       getRecords();
     }
@@ -209,96 +190,136 @@ const UpdateExistingRecords = () => {
 
   /////////////////////////////////update data in db end//////////////////////////
 
-  
   ///////////////////////////closing updateinput div start///////////////////////
-    const closeupdatediv = () =>{
-      updatediv.style.display="none";   
-      updaterow.style.backgroundColor="transparent";
-    }
+  const closeupdatediv = () => {
+    updatediv.style.display = "none";
+    updaterow.style.backgroundColor = "transparent";
+  };
   ///////////////////////////closing updateinput div end////////////////////////
-  
 
-
-    ///////////////////////test function/////////////////////
-    // const fun = (e)=>{                                  //
-    //  e.preventDefault();                                //
-    //  console.log("...updatedivclose...",updatediv);     //
-    // }                                                   //
-    /////////////////////////////////////////////////////////
- 
+  ///////////////////////test function/////////////////////
+  // const fun = (e)=>{                                  //
+  //  e.preventDefault();                                //
+  //  console.log("...updatedivclose...",updatediv);     //
+  // }                                                   //
+  /////////////////////////////////////////////////////////
 
   return (
     <>
-      <table className='updateexisttble'>
-    
-        <tr className='updateexistrow'>
-          <th className='updateexistth'>Name</th>
-          <th className='updateexistth'>Address</th>
-          <th className='updateexistth'>Status</th>
+      <table className="updateexisttble">
+        <tr className="updateexistrow">
+          <th className="updateexistth">Name</th>
+          <th className="updateexistth">Address</th>
+          <th className="updateexistth">Status</th>
         </tr>
-        {
-          records.map((ele) => {
-            return (
-              <>
-                <tr id={ele._id} className='updateexistrow'>
-                  <td key={`${ele._id}.${ele.name}`} className='updateexisttd'>{ele.name}</td>
-                  <td key={`${ele._id}.${ele.address}`} className='updateexisttd'>{ele.address}</td>
-                  <td key={`${ele._id}.${ele.status}`} className='updateexisttd'>{ele.status}</td>
-                  <EditButton
-                    onclick={(e) => { setUpdaterow(e.target.parentNode); highlightRow(e.target.parentNode,"edit"); }}
-                    buttonclass='updateexisteditbtn' spanclass='material-symbols-outlined' spantext='edit' />
-                  <EditButton
-                    onclick={(e) => { highlightRow(e.target.parentNode,"delete"); }}
-                    buttonclass='updateexistdelbtn' spanclass='material-symbols-outlined' spantext='delete' />
-                </tr>
-
-              </>
-
-
-            )
-          })
-        }
-
+        {records.map((ele) => {
+          return (
+            <>
+              <tr id={ele._id} className="updateexistrow">
+                <td key={`${ele._id}.${ele.name}`} className="updateexisttd">
+                  {ele.name}
+                </td>
+                <td key={`${ele._id}.${ele.address}`} className="updateexisttd">
+                  {ele.address}
+                </td>
+                <td key={`${ele._id}.${ele.status}`} className="updateexisttd">
+                  {ele.status}
+                </td>
+                <EditButton
+                  onclick={(e) => {
+                    setUpdaterow(e.target.parentNode);
+                    highlightRow(e.target.parentNode, "edit");
+                  }}
+                  buttonclass="updateexisteditbtn"
+                  spanclass="material-symbols-outlined"
+                  spantext="edit"
+                />
+                <EditButton
+                  onclick={(e) => {
+                    highlightRow(e.target.parentNode, "delete");
+                  }}
+                  buttonclass="updateexistdelbtn"
+                  spanclass="material-symbols-outlined"
+                  spantext="delete"
+                />
+              </tr>
+            </>
+          );
+        })}
       </table>
-      <div className='updateinputdiv'>
-      <div >
-      <button onClick={()=>closeupdatediv()} className='closelogo material-symbols-outlined'>close</button>
+      <div className="updateinputdiv">
+        <div>
+          <button
+            onClick={() => closeupdatediv()}
+            className="closelogo material-symbols-outlined"
+          >
+            close
+          </button>
+        </div>
+        <div className="updateform">
+          <form method="POST">
+            <FormLabel inputfor="Name" />
+            <input
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              className="updateinputfield nameip"
+              type="text"
+              id="Name"
+              value={`${name}`}
+            />
+
+            <br />
+            <br />
+            <FormLabel inputfor="Address" />
+
+            <input
+              onChange={(e) => {
+                setAddress(e.target.value);
+              }}
+              className="updateinputfield addressip"
+              type="text"
+              id="Address"
+              value={`${address}`}
+            />
+            <br />
+            <br />
+            <FormLabel inputfor="Status" />
+            <input
+              type="radio"
+              name="paymentstatus"
+              id="Paid"
+              value="Paid"
+              className="updatepaidradiobtn"
+              onClick={(e) => setPaymentstatus(e.target.value)}
+            />
+            <label htmlFor="Paid" className="updatepaidlabel">
+              Paid{" "}
+            </label>
+
+            <input
+              type="radio"
+              name="paymentstatus"
+              id="Unpaid"
+              value="Unpaid"
+              className="updateunpaidradiobtn"
+              onClick={(e) => setPaymentstatus(e.target.value)}
+            />
+            <label htmlFor="Unpaid" className="updateunpaidlabel">
+              Unpaid{" "}
+            </label>
+
+            <input
+              className="updateaddbtn"
+              type="submit"
+              value="Update"
+              onClick={(e) => updateRecords(e)}
+            />
+          </form>
+        </div>
       </div>
-      <div className='updateform'>
-      <form method='POST' >
-          <FormLabel inputfor="Name" />
-          <FormInput
-            onchange={(value)=>{setName(value)}}
-            class="updateinputfield nameip" inputforid="Name" inputtype="text"
-          /> <br /><br />
-          <FormLabel inputfor="Address" />
-          <FormInput
-            onchange={(value)=>{setAddress(value)}}
-            class="updateinputfield addressip" inputforid="Address" inputtype="text"
-          /> <br /><br />
-          <FormLabel inputfor="Status" />
-          <input type="radio" name='paymentstatus' id='Paid' value="Paid" className='updatepaidradiobtn'
-          onClick={(e)=>setPaymentstatus(e.target.value)}
-          />
-          <label htmlFor="Paid" className='updatepaidlabel'>Paid </label>
-
-          <input type="radio" name='paymentstatus' id='Unpaid' value="Unpaid" className='updateunpaidradiobtn'
-          onClick={(e)=>setPaymentstatus(e.target.value)}
-          />
-          <label htmlFor="Unpaid" className='updateunpaidlabel'>Unpaid </label>
-
-
-          <input className='updateaddbtn' type="submit" value="Update"
-           onClick={(e)=>updateRecords(e)} 
-          />
-        </form>
-      </div>
-       
-      </div>
-
-
     </>
-  )
-}
+  );
+};
 
-export default UpdateExistingRecords
+export default UpdateExistingRecords;

@@ -31,7 +31,7 @@ const getfunction = async () => {
     // console.log(Data[0].name);
     // alert(Data[0].name);
     // alert(JSON.stringify(Data));
-    console.log("..client showrecords res data..",Data)
+    // console.log("..client showrecords res data..",Data)
     if(res.status===401){
         
         navigate('/unauthorized');
@@ -44,7 +44,7 @@ const getfunction = async () => {
     else {
       console.log("Records fetched");
       setRecordss(Data);
-      console.log("....client showrecords fetched Data.......",Data);
+      // console.log("....client showrecords fetched Data.......",Data);
     }
   }
 

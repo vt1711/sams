@@ -1,23 +1,36 @@
-.logindiv{
+.logindiv {
   padding: 3rem 0 0 0;
+}
+.logindivheading {
+  text-align: center;
+  color: white;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  padding: 1rem;
+  margin: 3rem 0 2rem 0;
+  font-size: 2rem;
 }
 .h4login {
   text-align: center;
   color: aliceblue;
 }
-
-.loginlabel {
-  margin: 0 2rem 0 0;
+.loginform {
+  width: auto;
+  display: flex;
+  flex-direction: column;
 }
-
-.logininputuserid {
-  margin-left: 1.5rem;
+.loginlabel {
+  margin: 0 0 1rem 0;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 .loginformdiv {
   color: white;
-  margin: 4rem 0 0 20%;
-  padding: 4rem 2rem 4rem 17rem;
+  margin: 2rem 0 0 20%;
+  padding: 2rem 0 2rem 0;
   border: solid rgb(23, 4, 41) 1px;
   box-shadow: 0px 4px 8px 4px rgb(23, 4, 41);
   border-radius: 1rem;
@@ -29,6 +42,11 @@
   border: none;
   border-radius: 1rem;
   padding: 0.5rem;
+  display: block;
+  align-self: center;
+  margin: 0 0 2rem 0;
+  width: 40%;
+  text-align: center;
 }
 
 .loginbutton {
@@ -42,7 +60,7 @@
   outline: none;
   border: solid rgb(72, 9, 124) 1px;
   border-radius: 0.5rem;
-  margin: 2rem 0 0 4rem;
+  align-self: center;
 }
 
 .loginbutton:hover {
@@ -53,18 +71,25 @@
   font-size: larger;
 }
 
+.loginnote {
+  color: rgb(102, 37, 163);
+  text-align: center;
+  margin: 1rem 0 5rem 0;
+}
+
 @media only screen and (max-width: 600px) {
   .loginformdiv {
     margin: 2rem 0 0 1rem;
-    padding: 4rem 0rem 4rem 1.4rem;
     width: 24rem;
   }
 
-  .loginlabel {
-    margin: 0 2rem 0 1.5rem;
+  .logininput {
+    width: 70%;
   }
 
-  .loginbutton {
-    margin: 2rem 0 0 6.4rem;
+  .loginnote {
+    margin: 1.5rem 0 5rem 0;
+    font-size: 0.7rem;
+    padding: 0 2rem 0 2rem;
   }
 }

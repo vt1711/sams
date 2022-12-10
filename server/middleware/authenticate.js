@@ -31,7 +31,7 @@ const authenticatelogin = async (req,res,next)=>{
                  throw new Error("User not found");
                 }
                 
-                console.log(".. server authenticate user validated ..",rootUser);
+                // console.log(".. server authenticate user validated ..",rootUser);
                 req.token=token;
                 req.rootUser=rootUser;
                 req.userId = rootUser._id;

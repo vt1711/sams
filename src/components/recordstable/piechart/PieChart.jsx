@@ -54,7 +54,7 @@ const PieChart = () => {
     // console.log(Data[0].full_name);
     // alert(Data[0].full_name);
     // alert(JSON.stringify(Data));
-    console.log(Data)
+    // console.log(Data)
     
     if(res.status=== 401){
       
@@ -76,7 +76,7 @@ const PieChart = () => {
 
 
       setRecords(Data);
-      console.log("........Data.....",Data);
+      // console.log("........Data.....",Data);
       // console.log("cetntereeeeeeeee post");
       
     }
@@ -147,7 +147,7 @@ const PieChart = () => {
 
       //first this return will be executed which clean ups the code
       return () => {
-        console.log("....old doughnut cleanup...");
+        // console.log("....old doughnut cleanup...");
         mychart.destroy();
       }
 

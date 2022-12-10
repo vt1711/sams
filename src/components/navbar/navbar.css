@@ -6,6 +6,7 @@
   box-shadow: black 3px 0 3px 0;
   position: fixed;
   top: 0;
+  z-index: 100;
 }
 .navlogo {
   float: left;

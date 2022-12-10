@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
     try {
         let token;
         const { userid, password } = req.body;
-        console.log(".....server login req.body.....",req.body);
+        // console.log(".....server login req.body.....",req.body);
         
         if (!userid || !password) {
             return res.status(400).json({ error: "Cannot login , empty fields" });
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
                 console.log("Successfully logged in");
 
                 token= await user.generateAuthToken();
-                console.log( "...server login generated token...",token);
+                // console.log( "...server login generated token...",token);
 
                 res.cookie("jwtoken",token,{
                     expires: new Date(Date.now() + 86400000),
@@ -101,7 +101,7 @@ router.get(`/showrecords`,authenticate ,async (req, res) => {
         // console.log("..server show records req.token...",req.token);
         
         const records = await samspaymentdetailsschemasdetails.find({})
-        console.log("........server showrecords records........",records);
+        // console.log("........server showrecords records........",records);
         if (records.length===0) {
             res.status(404).send({error:"No records found"});
             console.log("...server showrecords no records found...");
@@ -123,12 +123,12 @@ router.get(`/showrecords`,authenticate ,async (req, res) => {
 
 router.delete(`/updaterecords/updateexisting/delete`, async (req, res) => {
     try {
-        console.log(".......server....selectedrecord........", req.body.id);
+        // console.log(".......server....selectedrecord........", req.body.id);
         const idtodelete = req.body.id;
 
         const deletestatus = await samspaymentdetailsschemasdetails.findByIdAndRemove(idtodelete);
 
-        console.log("....server....deletestatus.........", deletestatus);
+        // console.log("....server....deletestatus.........", deletestatus);
 
         if (deletestatus === null) {
             res.status(422);
@@ -149,15 +149,25 @@ router.patch('/updaterecords/updateexisting/update', async (req, res) => {
     const { _id, name, address, status } = req.body;
 
     const userexists = await samspaymentdetailsschemasdetails.findOne({ name: name });
-
-    if (userexists) { return res.status(422).json({ error: "user exists" }); }
-    else{
-        const result = await samspaymentdetailsschemasdetails.findByIdAndUpdate(_id, {
-            name, address, status
-        })
-        // console.log(data);
-        res.status(200).send(result);
+    if(userexists===null){
+        return res.status(422).json({ error: "cannot change user data" });
+       
     }
+    const payment =userexists.status;
+    const ownername =userexists.name;
+    const owneraddress =userexists.address;
+
+    if(payment===status||name!==ownername||address!==owneraddress){
+        return res.status(422).json({ error: "cannot change user data" });
+       
+    }
+    else{  
+        const result = await samspaymentdetailsschemasdetails.findByIdAndUpdate(_id, {
+        name, address, status
+    })
+    // console.log(data);
+    res.status(200).send(result);
+ }
 
    
 });

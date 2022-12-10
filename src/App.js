@@ -16,6 +16,7 @@ import { createContext } from "react";
 import { useReducer } from "react";
 import { initialState,reducer } from "./reducer/UseReducer";
 import Features from "./components/features/Features";
+import Footer from "./components/footer/Footer";
 
 
 export const UserContext = createContext();
@@ -73,6 +74,7 @@ const App = () => {
       <UserContext.Provider value={{state,dispatch}}>
       <Navbar />
       <Routing />
+      <Footer/>
       </UserContext.Provider>
     </>
   );
