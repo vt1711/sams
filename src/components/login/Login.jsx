@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../updaterecords/addform/FormInput";
 import FormLabel from "../updaterecords/addform/FormLabel";
 import "./login.css";
-import config from "../../json/config.json"
 import { UserContext } from "../../App";
 
 const Login = () => {
+  const { REACT_APP_USERNAME, REACT_APP_PASSWORD } = process.env;
   const navigate = useNavigate();
-  const [userid, setUserid] = useState(`${config.USERNAME}`);
-  const [password, setPassword] = useState(`${config.PASSWORD}`);
+  const [userid, setUserid] = useState(REACT_APP_USERNAME);
+  const [password, setPassword] = useState(REACT_APP_PASSWORD);
 
   const { state, dispatch } = useContext(UserContext);
 
@@ -53,7 +53,7 @@ const Login = () => {
               class="logininput logininputuserid"
               inputforid="UserId"
               inputtype="text"
-              inputvalue={`${config.USERNAME}`}
+              inputvalue={`${REACT_APP_USERNAME}`}
             />{" "}
     
             <FormLabel
@@ -67,7 +67,7 @@ const Login = () => {
               class="logininput"
               inputforid="Password"
               inputtype="password"
-              inputvalue={`${config.PASSWORD}`}
+              inputvalue={`${REACT_APP_PASSWORD}`}
             />
             <button
               onClick={(e) => {
