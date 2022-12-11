@@ -27,18 +27,18 @@ const UpdateExistingRecords = () => {
     let currentaddress = selectedrow.childNodes[1].innerText;
     let currentpaymentstatus = selectedrow.childNodes[2].innerText;
 
-    let updatenameinputelement =
-      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
-        .childNodes[1];
-    let updateaddressinputelement =
-      selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
-        .childNodes[6];
+    // let updatenameinputelement =
+    //   selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+    //     .childNodes[1];
+    // let updateaddressinputelement =
+    //   selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
+    //     .childNodes[6];
     let updatepaidinputradioelement =
       selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
-        .childNodes[11];
+        .childNodes[9];
     let updateunpaidinputradioelement =
       selectedrow.parentNode.nextSibling.childNodes[1].childNodes[0]
-        .childNodes[13];
+        .childNodes[11];
 
     // console.log("...currentname..",currentname);
     // console.log("...currentaddress..",currentaddress);
@@ -48,9 +48,9 @@ const UpdateExistingRecords = () => {
     // console.log("........updatepaidinputelement......",updatepaidinputradioelement);
     // console.log("........updateunpaidinputradioelement......",updateunpaidinputradioelement);
 
-    updatenameinputelement.value = currentname;
+    // updatenameinputelement.innerText = currentname;
     setName(currentname);
-    updateaddressinputelement.value = currentaddress;
+    // updateaddressinputelement.innerText = currentaddress;
     setAddress(currentaddress);
 
     setPaymentstatus(currentpaymentstatus);
@@ -178,7 +178,7 @@ const UpdateExistingRecords = () => {
 
     if (res.status === 422) {
       alert(
-        "Only payment status update is allowed\nFor updating name or address kindly delete this record and create a new record "
+        "Payment status not updated"
       );
     } else {
       alert("Updation Successfull !");
@@ -259,29 +259,32 @@ const UpdateExistingRecords = () => {
         <div className="updateform">
           <form method="POST">
             <FormLabel inputfor="Name" />
-            <input
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+            <span
+              // onChange={(e) => {
+              //   setName(e.target.value);
+              // }}
               className="updateinputfield nameip"
               type="text"
               id="Name"
-              value={`${name}`}
-            />
-
+              
+            >
+            {`${name}`}
+           </span>
             <br />
             <br />
             <FormLabel inputfor="Address" />
 
-            <input
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
+            <span
+              // onChange={(e) => {
+              //   setAddress(e.target.value);
+              // }}
               className="updateinputfield addressip"
               type="text"
               id="Address"
-              value={`${address}`}
-            />
+              
+            >
+              {`${address}`}
+            </span>
             <br />
             <br />
             <FormLabel inputfor="Status" />
