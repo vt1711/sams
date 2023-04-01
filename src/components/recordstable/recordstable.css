@@ -1,0 +1,13 @@
+.couldnotfindresult {
+  font-size: 2rem;
+  padding: 4rem 0 4rem 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: maroon;
+}
+
+@media only screen and (max-width: 600px) {
+  .couldnotfindresult {
+    font-size: 1.5rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+}

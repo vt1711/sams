@@ -14,12 +14,14 @@ import error404img from "./components/errorpages/error404img.png";
 import Logout from "./components/logout/Logout";
 import { createContext } from "react";
 import { useReducer } from "react";
-import { initialState,reducer } from "./reducer/UseReducer";
+import { initialState,reducer,recordsreducer,searchnamereducer } from "./reducer/UseReducer";
 import Features from "./components/features/Features";
 import Footer from "./components/footer/Footer";
 
 
 export const UserContext = createContext();
+export const RecordsContext = createContext();
+export const SearchnameContext = createContext();
 
 const Routing = () => {
   return (
@@ -68,13 +70,19 @@ const Routing = () => {
 const App = () => {
 
   const [state, dispatch] = useReducer(reducer,initialState);
+  const [recordsstate, recordsstatedispatch] = useReducer(recordsreducer,[]);
+  const [searchnamestate, searchnamestatedispatch] = useReducer(searchnamereducer,[]);
 
   return (
     <>
       <UserContext.Provider value={{state,dispatch}}>
+      <RecordsContext.Provider value={{recordsstate,recordsstatedispatch}}>
+      <SearchnameContext.Provider value={{searchnamestate,searchnamestatedispatch}}>
       <Navbar />
       <Routing />
       <Footer/>
+      </SearchnameContext.Provider>
+      </RecordsContext.Provider>
       </UserContext.Provider>
     </>
   );

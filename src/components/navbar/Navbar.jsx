@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 import { UserContext } from "../../App";
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Navbar = () => {
   const hamburgertoggle = () => {
@@ -101,15 +102,13 @@ const Navbar = () => {
           <MenuItems />
         </div>
         <div className="hamburgerdiv" id="hamburgerdiv">
-          <div
-            className="material-symbols-outlined hamburgericon"
+          <RxHamburgerMenu
+            className="hamburgericon"
             id="hamburgericon"
             onClick={() => {
               hamburgertoggle()
             }}
-          >
-            menu
-          </div>
+          />
           <div className="hamburgerlist" id="hamburgerlist">
             <MenuItems />
           </div>
