@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext }  from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SearchnameContext } from '../../App'
 import './recordstable.css'
+import { BiLoaderAlt } from 'react-icons/bi';
 
 //for getting data from json file
 // const data = require("../../json/records.json");
@@ -111,6 +112,13 @@ const getfunction = async () => {
     }
   }
 
+  if(recordss.length===0){
+    return(
+      <>
+        <BiLoaderAlt className='loadericon'/>
+      </>
+    )
+  }
  
   return (
     <>

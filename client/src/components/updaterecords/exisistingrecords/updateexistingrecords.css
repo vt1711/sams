@@ -21,6 +21,25 @@
   text-align:center;
   word-wrap:break-word;
 }
+.buttoncolumn{
+  display: flex;
+  margin: 1rem 0 0 0;
+  height: max-content;
+  width: max-content;
+
+}
+.editbutton,.deletebutton{
+  color: rgb(199, 134, 14);
+  font-size: 1.5rem;
+}
+
+.deletebutton{
+  color: rgb(187, 34, 34);
+  margin-left: 1.4rem;
+}
+.editbuttonsvg,.deletebuttonsvg,.divclosesvg{
+ pointer-events: none;
+}
 
 @keyframes divappear {
   
@@ -48,13 +67,12 @@
 }
 .closelogo{
   margin: 0 0 0 19rem;
-  color: rgb(243, 82, 82);
+  color: rgb(246, 115, 115);
   font-size: 1rem;
-  background-color: rgb(39, 3, 39);
-  border: none;
 }
 .closelogo:active{
-  font-size:1.3rem ;
+  color: rgb(248, 58, 58);
+
 }
 .updateform{
   margin: 1rem 0 0 0.4rem;
@@ -64,12 +82,7 @@
   margin-left: 2rem;
   height: 1.5rem;
   width: 13rem;
-  /* background-color: rgb(115, 83, 146); */
-  /* outline: none; */
-  /* border: none; */
   color: white;
-  /* padding-left: 1rem; */
-  /* border-radius: 0.5rem; */
 }
 
 .nameip{
@@ -119,19 +132,31 @@
 .updateaddbtn:hover
 {
   cursor: pointer;
-  background-color: rgb(106, 75, 134);
+  font-weight: bold;
 
 }
 .updateaddbtn:active{
-  font-size: larger;
+  background-color: rgb(106, 75, 134);
+
 }
 
 @media only screen and (max-width: 600px) {
   .updateexisttble {
     width: 24rem;
-    margin: 2rem 0 2rem 1rem;
+    margin: 2rem 0 5rem 1rem;
   }
   .updateinputdiv{
     margin: 19rem 0 0 2rem;
+  }
+  .buttoncolumn{
+    display: flex;
+    margin : 1.6rem 0 0 0;
+  }
+  .editbutton,.deletebutton{
+    font-size: 1.2rem;
+  }
+  
+  .deletebutton{
+    margin-left: 0.6rem;
   }
 }

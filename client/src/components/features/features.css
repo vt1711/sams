@@ -1,3 +1,6 @@
+.featuresdiv{
+  margin: 0 0 9rem 0;
+}
 .featuresh1 {
   padding: 3rem 0 0 0;
 }
@@ -8,7 +11,7 @@
   align-content:space-between;
   margin: 0 0 3rem 0;
 }
-.righttext{
+.rightlogo{
   flex-direction: row-reverse;
 }
 .featurestexttitles{
@@ -24,9 +27,6 @@
   color: blueviolet;
   font-size: 8rem;
   display: flex;
-}
-.imagefeaturesblockimg1{
-  font-size: 8rem;
 }
 .textfeaturesblock {
   /* background-color: greenyellow; */

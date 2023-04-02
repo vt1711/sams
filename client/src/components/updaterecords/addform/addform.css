@@ -46,11 +46,11 @@
 .addbtn:hover
 {
     cursor: pointer;
-    background-color: rgb(106, 75, 134);
+    font-weight: bold;
 
 }
 .addbtn:active{
-    font-size: larger;
+    background-color: rgb(106, 75, 134);
 }
 
 @media only screen and (max-width: 600px) {

@@ -65,10 +65,10 @@
 
 .loginbutton:hover {
   cursor: pointer;
-  background-color: rgb(106, 75, 134);
+  font-weight: bold;
 }
 .loginbutton:active {
-  font-size: larger;
+  background-color: rgb(106, 75, 134);
 }
 
 .loginnote {

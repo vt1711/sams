@@ -1,4 +1,10 @@
-.material-symbols-outlined {
+/* ................This file is no longer used by project................
+.........after switching editdelete buttons to react icons.........
+.......but is not deleted as might be needed if error occurs....... ]
+*/
+
+
+/* .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .material-symbols-outlined:active{
@@ -25,9 +31,10 @@
 }
 
 .updateexisteditbtn:active {
-  /* border: solid rgb(243, 243, 33) 1px;   */
+  border: solid rgb(243, 243, 33) 1px;  
   
 }
 .updateexistdelbtn:active {
-  /* border: solid rgb(247, 103, 84) 1px; */
-}
+  border: solid rgb(247, 103, 84) 1px;
+} 
+*/

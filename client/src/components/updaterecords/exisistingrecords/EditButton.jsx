@@ -1,17 +1,22 @@
-import React from 'react'
-import './editbutton.css'
+/* ................This file is no longer used by project................
+.........after switching editdelete buttons to react icons.........
+.......but is not deleted as might be needed if error occurs....... ]
+*/
 
-const EditButton = (props) => {
-    const {buttonclass ,spanclass,spantext} = props;
-    return (
-        <>
-            <button className={`${buttonclass} ${spanclass}`} onClick={(e)=>props.onclick(e)} >
+// import React from 'react'
+// import './editbutton.css'
+
+// const EditButton = (props) => {
+//     const {buttonclass ,spanclass,spantext} = props;
+//     return (
+//         <>
+//             <button className={`${buttonclass} ${spanclass}`} onClick={(e)=>props.onclick(e)} >
                 
-                    {spantext}
+//                     {spantext}
                
-            </button>
-        </>
-    )
-}
+//             </button>
+//         </>
+//     )
+// }
 
-export default EditButton
+// export default EditButton

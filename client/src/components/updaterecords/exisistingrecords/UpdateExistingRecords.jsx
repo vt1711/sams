@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import EditButton from "./EditButton";
+// import EditButton from "./EditButton";
 import "./updateexistingrecords.css";
 import FormLabel from "../addform/FormLabel";
 import { useNavigate } from "react-router-dom";
+import { MdModeEditOutline } from 'react-icons/md';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+import { FaRegWindowClose } from 'react-icons/fa';
+import { BiLoaderAlt } from 'react-icons/bi';
+
 //getting data via json file
 //const data = require('../../../json/records.json');
 //console.log(data);
@@ -203,7 +208,14 @@ const UpdateExistingRecords = () => {
   //  console.log("...updatedivclose...",updatediv);     //
   // }                                                   //
   /////////////////////////////////////////////////////////
-
+  
+  if(records.length===0){
+    return(
+     <>
+        <BiLoaderAlt className='loadericon'/>
+     </>
+    )
+  }
   return (
     <>
       <table className="updateexisttble">
@@ -225,36 +237,38 @@ const UpdateExistingRecords = () => {
                 <td key={`${ele._id}.${ele.status}`} className="updateexisttd">
                   {ele.status}
                 </td>
-                <EditButton
-                  onclick={(e) => {
-                    setUpdaterow(e.target.parentNode);
-                    highlightRow(e.target.parentNode, "edit");
+                <td className="buttoncolumn">
+                <div className='editbutton'
+                 onClick={(e) => {
+                    setUpdaterow(e.target.parentNode.parentNode);
+                    highlightRow(e.target.parentNode.parentNode, "edit");
                   }}
-                  buttonclass="updateexisteditbtn"
-                  spanclass="material-symbols-outlined"
-                  spantext="edit"
-                />
-                <EditButton
-                  onclick={(e) => {
-                    highlightRow(e.target.parentNode, "delete");
+                >
+                <MdModeEditOutline className="editbuttonsvg" />
+                </div>
+                <div className='deletebutton'
+                  onClick={(e) => {
+                    highlightRow(e.target.parentNode.parentNode, "delete");
                   }}
-                  buttonclass="updateexistdelbtn"
-                  spanclass="material-symbols-outlined"
-                  spantext="delete"
-                />
+                >
+                <RiDeleteBin5Line  className="deletebuttonsvg" />
+                  
+                </div>
+                  
+                </td>
+               
               </tr>
             </>
           );
         })}
       </table>
       <div className="updateinputdiv">
-        <div>
-          <button
+        <div className="closelogo"
             onClick={() => closeupdatediv()}
-            className="closelogo material-symbols-outlined"
-          >
-            close
-          </button>
+        >
+          <FaRegWindowClose
+            className="divclosesvg"
+          />
         </div>
         <div className="updateform">
           <form method="POST">
